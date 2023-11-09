@@ -12,6 +12,14 @@ margin: 5px
   --bs-btn-color: #f8f9fa;
 
 }
+   .scrollable {
+       height: 600px;
+       overflow-y: auto;
+   }
+
+      textarea {
+       height: 90px;
+   }
 
 
 </style>
@@ -109,7 +117,9 @@ margin: 5px
 
                         </section>
 
-
+                        <footer>
+                            <button class="btn btn-outline-primary">좋아요버튼 미완성</button>
+                        </footer>
                     </article>
 
                     <!-- Comments section-->
@@ -118,7 +128,7 @@ margin: 5px
                             <div class="card-body">
 
                                 <form class="mb-4 d-flex justify-content-between align-items-stretch">
-                                    <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!" style="width: 85%;"></textarea>
+                                    <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!" style="width: 85%; resize:none;"></textarea>
                                     <button class="btn btn-primary" style="width: 14%; background-color: #babbbc; border-color: #babbbc;">등록</button>
                                 </form>
                                 <div class="d-flex mb-4">
@@ -155,39 +165,22 @@ margin: 5px
 
                 </div>
                     <!-- 사진 업로드 하는곳 -->
-                <div class="col-lg-4">
+                <div class="col-lg-4 scrollable">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12">
                             <img src="/img/풍경1.jpg" class="rounded" alt="대체 텍스트" width="100%"/>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12">
+                            <img src="/img/풍경2.jpg" class="rounded" alt="대체 텍스트" width="100%"/>
+                        </div>
+                        <div class="col-12">
+                            <img src="/img/풍경1.jpg" class="rounded" alt="대체 텍스트" width="100%"/>
+                        </div>
+                        <div class="col-12">
                             <img src="/img/풍경2.jpg" class="rounded" alt="대체 텍스트" width="100%"/>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <img src="/img/풍경1.jpg" class="rounded" alt="대체 텍스트" width="100%"/>
-                        </div>
-                        <div class="col-6">
-                            <img src="/img/풍경2.jpg" class="rounded" alt="대체 텍스트" width="100%"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <img src="/img/풍경1.jpg" class="rounded" alt="대체 텍스트" width="100%"/>
-                        </div>
-                        <div class="col-6">
-                            <img src="/img/풍경2.jpg" class="rounded" alt="대체 텍스트" width="100%"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <img src="/img/풍경1.jpg" class="rounded" alt="대체 텍스트" width="100%"/>
-                        </div>
-                        <div class="col-6">
-                            <img src="/img/풍경2.jpg" class="rounded" alt="대체 텍스트" width="100%"/>
-                        </div>
-                    </div>
+
                 </div>
 
             </div>
