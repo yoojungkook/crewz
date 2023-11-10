@@ -14,6 +14,10 @@
     border: 0;
 }
 
+#notification + div {
+
+}
+
 #profile {
     margin-left: 20px;
     border-radius: 30px;
@@ -119,4 +123,18 @@ a:hover {
 
 .dropdown-toggle::after {
     border: 0;
+}
+
+.msg-profile {
+    border: 1px solid black;
+    width: 35px;
+    height: 35px;
+    background-image: url(../../img/9596881ac8a6f4b0ddd2fb32aaf896e0.jpg);
+    background-size: 30px;
+    background-position: center;
+    border-radius: 20px;
+}
+
+.dropdown-item:active {
+    background-color: gainsboro;
 }
