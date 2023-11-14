@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Modal -->
+<footer th:fragment="login">
+    <div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container d-flex justify-content-center" style="padding-bottom: 30px; padding-top: 30px">
+                        <img src="/img/crewz.jpeg" style="width: 200px; height: 60px; text-align: center">
+                    </div>
+
+                    <form>
+                        <div class="container join">
+                            <input class="input-info" type="text" placeholder="아이디">
+                        </div>
+                        <div class="container join">
+                            <input class="input-info" type="text" placeholder="비밀번호">
+                        </div>
+
+                        <div class="container d-flex justify-content-center" style="padding-bottom: 20px">
+                            <input id="join" type="submit" value="LOG IN" readonly>
+                        </div>
+                    </form>
+
+                    <hr/>
+
+                    <div class="container">
+                        <div style="font-size: 24px; text-underline: gray; color: gray; text-align: center">회원가입</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

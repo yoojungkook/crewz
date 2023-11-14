@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+  <!-- Modal -->
+  <footer th:fragment="join">
+      <div class="modal fade" id="joinmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                  <div class="modal-body">
+                      <div class="container d-flex justify-content-center" style="padding-bottom: 10px">
+                          <img src="/img/crewz.jpeg" style="width: 200px; height: 60px; text-align: center">
+                      </div>
+
+                      <div class="container d-flex justify-content-center" style="padding-bottom: 10px">
+                          <div style="font-size: 27px;">회원가입</div>
+                      </div>
+
+                      <form>
+                          <div class="container join">
+                              <input class="input-info" type="text" placeholder="이름">
+                          </div>
+                          <div class="container join">
+                              <input class="input-info" type="text" placeholder="아이디">
+                          </div>
+                          <div class="container join">
+                              <input class="input-info" type="text" placeholder="전화번호">
+                          </div>
+                          <div class="container join">
+                              <input class="input-info" type="text" placeholder="비밀번호">
+                          </div>
+                          <div class="container join">
+                              <input class="input-info" type="text" placeholder="비밀번호 확인">
+                          </div>
+
+                          <div class="container d-flex justify-content-center join">
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="checkbox" value="" id="check1">
+                                  <label class="form-check-label" for="check1">
+                                      통합 서비스 이용약관 동의(필수)
+                                  </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="checkbox" value="" id="check2">
+                                  <label class="form-check-label" for="check2">
+                                      개인정보 이용(선택)
+                                  </label>
+                              </div>
+                          </div>
+
+                          <div class="container d-flex justify-content-center">
+                            <input id="join" type="submit" value="가입하기" readonly>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </footer>
+</body>
+</html>

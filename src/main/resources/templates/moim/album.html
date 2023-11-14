@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div th:fragment="item" class="album">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                             xmlns="http://www.w3.org/2000/svg"
+                             role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
+                             focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c"/>
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 사진 추가 버튼 -->
+        <div class="container fixed-bottom d-flex justify-content-end" style="padding-bottom: 20px;">
+            <img src="/img/plusbotton.png" style="width: 60px; height: 60px" data-bs-toggle="modal" data-bs-target="#photoModal"/>
+        </div>
+
+        <!-- 사진 추가 폼 -->
+        <div th:replace="~{moim/album-form :: album-item}"></div>
+    </div>
+</body>
+</html>

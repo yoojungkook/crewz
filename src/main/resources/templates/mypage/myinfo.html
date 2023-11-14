@@ -3,192 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <style>
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        table {
-            border-collapse: separate;
-            border-spacing: 30px 30px;
-        }
-
-        th {
-            text-align: center;
-        }
-
-        td, input {
-            text-align: left;
-        }
-
-        button {
-            background-color: #fcf9f9;
-        }
-
-        /*프로필사진*/
-        #profile {
-            position: relative;
-            top: 30px;
-        }
-
-        #profile-container {
-            width: 100px;
-            height: 100px;
-            border-radius: 70%;
-            overflow: hidden;
-        }
-
-        #profile-img {
-            width: 100%;
-            height: 100px;
-            object-fit: cover;
-        }
-
-        /*메뉴*/
-        ul#menu {
-            list-style-type: none;
-            margin: auto;
-            padding: 0;
-            width: 200px;
-
-            border-radius: 5px;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-        }
-
-        ul#menu li button {
-            width: 200px;
-            height: 50px;
-            padding-left: 20px;
-            line-height: 50px;
-            display: block; /*링크를 블록으로 만들어서 링크 영역 전체를 클릭할 수 있게 한다*/
-            overflow: hidden;
-            font-size: 14px;
-            color: #686868;
-
-            transition: all 0.2s linear; /*상태변화: 적용할속성 총시간 진행속도 */
-            -webkit-transition: all 0.2s linear;
-            -moz-transition: all 0.2s linear;
-            -o-transition: all 0.2s linear;
-        }
-
-        ul#menu i {
-            margin-right: 15px;
-
-            transition: all 0.2s linear;
-            -webkit-transition: all 0.2s linear;
-            -moz-transition: all 0.2s linear;
-            -o-transition: all 0.2s linear;
-        }
-
-        ul#menu li button:hover i {
-            color: #fc4c4c;
-        }
-
-        .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
-            background-color: #efefef;
-        }
-
-        .nav-pills .nav-link.active i{
-            color: #fc4c4c;
-        }
-
-        /*메세지 메뉴*/
-        .menu-msg a {
-            display: inline-block;
-            color: #fc4c4c;
-            text-align: center;
-            padding: 10px;
-            text-decoration: none;
-            font-size: 10px;
-            border-radius: 5px;
-            border-color: #fc4c4c;
-        }
-
-        .menu-msg a:hover {
-            background-color: #ddd;
-            color: #fc4c4c;
-        }
-
-        .menu-msg a.active {
-            background-color: #fc4c4c;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/mypage/mypage.css">
 </head>
 <body>
 
-<header>
-    <div class="container text-center">
-        <div class="row">
-            <div class="col"></div>
-            <div class="col-6">
-                <a href="">
-                    <img src="/로고.png" style="width: 150px;height: 75px;">
-                </a>
-                마이페이지
+    <header>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-6">
+                    <a href="">
+                        <img src="/logo.png" style="width: 150px;height: 75px;">
+                    </a>
+                    마이페이지
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
             </div>
-            <div class="col"></div>
-            <div class="col"></div>
         </div>
-    </div>
-</header>
-<hr/>
-<div class="row" style="height:5vh;"></div>
-<div class="row">
-    <div class="col-1"></div>
+    </header>
+    <hr/>
+    <div class="row" style="height:5vh;"></div>
+    <div class="row">
+        <div class="col-1"></div>
 
-    <div class="col-3" style="padding: 0;">
-        <ul class="nav nav-pills flex-column mb-3" id="menu" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="menu-myinfo" data-bs-toggle="pill" data-bs-target="#content-myinfo"
-                        type="button" role="tab" aria-controls="content-myinfo" aria-selected="true"><i
-                        class="fa-solid fa-circle-info"></i>회원정보
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="menu-message" data-bs-toggle="pill" data-bs-target="#content-message"
-                        type="button" role="tab" aria-controls="content-message" aria-selected="false"><i
-                        class="fa-solid fa-envelope"></i>메세지함
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="menu-mygroup" data-bs-toggle="pill" data-bs-target="#content-mygroup"
-                        type="button" role="tab" aria-controls="content-mygroup" aria-selected="false"><i
-                        class="fa-solid fa-user-group"></i>나의모임
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="menu-likegroup" data-bs-toggle="pill" data-bs-target="#content-likegroup"
-                        type="button" role="tab" aria-controls="content-likegroup" aria-selected="false"><i
-                        class="fa-solid fa-heart"></i>찜한모임
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="menu-partingroup" data-bs-toggle="pill"
-                        data-bs-target="#content-partingroup" type="button" role="tab"
-                        aria-controls="content-partingroup" aria-selected="false"><i class="fa-solid fa-handshake"></i>참가모임
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="menu-delete" data-bs-toggle="pill" data-bs-target="#content-delete"
-                        type="button" role="tab" aria-controls="content-delete" aria-selected="false"><i
-                        class="fa-solid fa-user-xmark"></i>회원탈퇴
-                </button>
-            </li>
-        </ul>
-    </div>
+        <div class="col-3" style="padding: 0;">
+            <ul class="nav nav-pills flex-column mb-3" id="menu" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="menu-myinfo" data-bs-toggle="pill" data-bs-target="#content-myinfo"
+                            type="button" role="tab" aria-controls="content-myinfo" aria-selected="true"><i
+                            class="fa-solid fa-circle-info"></i>회원정보
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="menu-message" data-bs-toggle="pill" data-bs-target="#content-message"
+                            type="button" role="tab" aria-controls="content-message" aria-selected="false"><i
+                            class="fa-solid fa-envelope"></i>메세지함
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="menu-mygroup" data-bs-toggle="pill" data-bs-target="#content-mygroup"
+                            type="button" role="tab" aria-controls="content-mygroup" aria-selected="false"><i
+                            class="fa-solid fa-user-group"></i>나의모임
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="menu-likegroup" data-bs-toggle="pill" data-bs-target="#content-likegroup"
+                            type="button" role="tab" aria-controls="content-likegroup" aria-selected="false"><i
+                            class="fa-solid fa-heart"></i>찜한모임
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="menu-partingroup" data-bs-toggle="pill"
+                            data-bs-target="#content-partingroup" type="button" role="tab"
+                            aria-controls="content-partingroup" aria-selected="false"><i class="fa-solid fa-handshake"></i>참가모임
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="menu-delete" data-bs-toggle="pill" data-bs-target="#content-delete"
+                            type="button" role="tab" aria-controls="content-delete" aria-selected="false"><i
+                            class="fa-solid fa-user-xmark"></i>회원탈퇴
+                    </button>
+                </li>
+            </ul>
+        </div>
 
-<!--    회원정보-->
+    <!--    회원정보-->
     <div class="tab-content col-7" id="pills-tabContent" style="padding: 0">
         <div class="tab-pane fade show active" id="content-myinfo" role="tabpanel" aria-labelledby="menu-myinfo"
              tabindex="0">
@@ -196,7 +80,7 @@
                 <div class="col-1" id="profile" style="padding: 0">
                     <figure class="figure">
                         <div id="profile-container">
-                            <image id="profile-img" src="/로고.png"/>
+                            <image id="profile-img" src="/logo.png"/>
                         </div>
                         <br/>
                         <a href="">
@@ -323,6 +207,8 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
 </div>
 <div class="col-1"></div>
 </body>
