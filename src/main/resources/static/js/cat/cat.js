@@ -24,7 +24,6 @@ const ch = () => {
         $.ajax({
             url: "/html/notification-msg.html",
             type: "get",
-            // data: {"no" : count},
             datatype: "html",
             success: function (result) {
                 $.ajax({
@@ -77,3 +76,15 @@ $('#msg-body').scroll(function() {
         }
     }
 });
+
+const info = (value) => {
+    location.href = "/category/" + value + "/view?num=1";
+}
+
+const mypage = () => {
+    location.href = "/myinfo/name";
+}
+
+function home() {
+    location.href= "/";
+}
