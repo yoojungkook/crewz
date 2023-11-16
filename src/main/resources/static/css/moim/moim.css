@@ -1,0 +1,138 @@
+/* 가입하기 버튼 */
+#join-btn{
+	height:60px;
+	width:200px;
+	font-size:1.5rem;
+	border-radius: 10px 0px 0px 10px / 10px 10px 10px 10px;
+}
+
+.nav-pills {
+    --bs-nav-pills-link-active-bg: #FC4C4C;
+}
+.nav{
+	--bs-nav-link-color: #FC4C4C;
+}
+
+/* 푸터는 보류 */
+/*footer*/
+/* .footer {*/
+/*    background-color: #f88888;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    padding:10px 0;*/
+/*    position: relative;*/
+/*    bottom: 0;*/
+/*    width: 100%;*/
+/*    */
+/*}*/
+
+/*.footer a {*/
+/*    color: white;*/
+/*    text-decoration: none;*/
+/*}*/
+
+
+/*index.html*/
+.home-img {
+	max-width: 300px;
+	max-height: 500px;
+}
+
+#home{
+	background-color : unset;
+}
+
+.btn-outline-secondary {
+--bs-btn-active-bg: #FC4C4C;
+--bs-btn-active-border-color: #FC4C4C;
+--bs-btn-color: #FC4C4C;
+--bs-btn-border-color: #FC4C4C;
+--bs-btn-hover-bg: #FC4C4C;
+--bs-btn-hover-border-color: #FC4C4C;
+}
+
+.btn-primary {
+    --bs-btn-color: #FC4C4C;
+    --bs-btn-bg: #fff;
+    --bs-btn-border-color: #FC4C4C;
+    --bs-btn-hover-bg: #FC4C4C;
+    --bs-btn-hover-border-color: #FC4C4C;
+	--bs-btn-active-bg: #FC4C4C;
+    --bs-btn-active-border-color: #FC4C4C;
+}
+
+/* somoim(소모임) */
+.somoim_div{
+	background-color: #FAFAFA;
+	/*border-radius : .5rem;*/
+	border-radius: 5px;
+	margin : 20px 0 ;
+	padding: 20px 0;
+}
+
+.somoim-input{
+	margin-top : 20px;
+}
+
+.somoim_img{
+	height: 100%;
+}
+.mb-5 {
+	margin-bottom: 20px;
+}
+.somoim_content{
+	padding-left : 30px;
+}
+.somoim_join_btn{
+	width : 80%
+}
+
+/* album(사진첩) */
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+@media (min-width: 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+
+/* 후기 */
+.rounded {
+	margin: 5px
+}
+
+.btn btn-primary {
+	--bs-btn-color: #f8f9fa;
+}
+
+.scrollable {
+	height: 600px;
+	overflow-y: auto;
+}
+
+textarea {
+	height: 90px;
+}
+
+#wrp img {
+	width: 200px;
+	height: 100%;
+}
+
+/* 하트 css*/
+#heart {
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	border: 3px solid #dc3545;
+	border-radius: 10px 10px 10px 10px / 0px 10px 10px 0px;
+	background-color: white;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <header th:fragment="head">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex justify-content-center" style="padding-top: 30px; padding-bottom: 30px" onclick="home()">
+                    <div style="text-align: center; display: flex; align-items: center">
+                        <img src="/logo.png"
+                             style="width: 200px; height: 70px; border-radius: 10px; float: left; margin-right: 10px;">
+                        <form style="display: flex; align-items: center; float: right; margin-left: 10px;">
+                            <div id="category" class="btn-group">
+                                <button id="category-box" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    선택
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="category-box">
+                                    <li><a class="dropdown-item disabled category">카테고리</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li th:each="cat : ${catlist}">
+                                        <a class="dropdown-item category cat" th:onclick="catchange([[${cat.name}]])"
+                                           th:text="${cat.name}"></a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item category" onclick="catchange('모임제목')">모임제목</a></li>
+                                    <li><a class="dropdown-item category" onclick="catchange('작성자')">작성자</a></li>
+                                </ul>
+                            </div>
+                            <input id="search-box" type="box">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
