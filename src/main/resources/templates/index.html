@@ -68,12 +68,12 @@
     </div>
 
     <div th:if="${log == true}">
-        <div th:replace="~{test/msg :: msg}"></div>
+        <div th:replace="~{index/msg :: msg}"></div>
     </div>
     <div th:if="${log == false}">
-        <div th:replace="~{test/login :: login}">
+        <div th:replace="~{index/login :: login}">
         </div>
-        <div th:replace="~{test/join :: join}">
+        <div th:replace="~{index/join :: join}">
         </div>
     </div>
 
