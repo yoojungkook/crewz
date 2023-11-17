@@ -8,69 +8,78 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/mypage/mypage.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        //화면 시작
+        $(document).ready(function () {
+            $("#pwdStatusSuccess").hide();
+            $("#pwdStatusFail").hide();
+        });
+    </script>
 </head>
 <body>
 
-    <header>
-        <div class="container text-center">
-            <div class="row">
-                <div class="col"></div>
-                <div class="col-6">
-                    <a href="">
-                        <img src="/logo.png" style="width: 150px;height: 75px;">
-                    </a>
-                    마이페이지
-                </div>
-                <div class="col"></div>
-                <div class="col"></div>
+<header>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-6">
+                <a href="">
+                    <img src="/logo.png" style="width: 150px;height: 75px;">
+                </a>
+                마이페이지
             </div>
+            <div class="col"></div>
+            <div class="col"></div>
         </div>
-    </header>
-    <hr/>
-    <div class="row" style="height:5vh;"></div>
-    <div class="row">
-        <div class="col-1"></div>
+    </div>
+</header>
+<hr/>
+<div class="row" style="height:5vh;"></div>
+<div class="row">
+    <div class="col-1"></div>
 
-        <div class="col-3" style="padding: 0;">
-            <ul class="nav nav-pills flex-column mb-3" id="menu" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="menu-myinfo" data-bs-toggle="pill" data-bs-target="#content-myinfo"
-                            type="button" role="tab" aria-controls="content-myinfo" aria-selected="true"><i
-                            class="fa-solid fa-circle-info"></i>회원정보
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="menu-message" data-bs-toggle="pill" data-bs-target="#content-message"
-                            type="button" role="tab" aria-controls="content-message" aria-selected="false"><i
-                            class="fa-solid fa-envelope"></i>메세지함
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="menu-mygroup" data-bs-toggle="pill" data-bs-target="#content-mygroup"
-                            type="button" role="tab" aria-controls="content-mygroup" aria-selected="false"><i
-                            class="fa-solid fa-user-group"></i>나의모임
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="menu-likegroup" data-bs-toggle="pill" data-bs-target="#content-likegroup"
-                            type="button" role="tab" aria-controls="content-likegroup" aria-selected="false"><i
-                            class="fa-solid fa-heart"></i>찜한모임
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="menu-partingroup" data-bs-toggle="pill"
-                            data-bs-target="#content-partingroup" type="button" role="tab"
-                            aria-controls="content-partingroup" aria-selected="false"><i class="fa-solid fa-handshake"></i>참가모임
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="menu-delete" data-bs-toggle="pill" data-bs-target="#content-delete"
-                            type="button" role="tab" aria-controls="content-delete" aria-selected="false"><i
-                            class="fa-solid fa-user-xmark"></i>회원탈퇴
-                    </button>
-                </li>
-            </ul>
-        </div>
+    <div class="col-3" style="padding: 0;">
+        <ul class="nav nav-pills flex-column mb-3" id="menu" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="menu-myinfo" data-bs-toggle="pill" data-bs-target="#content-myinfo"
+                        type="button" role="tab" aria-controls="content-myinfo" aria-selected="true"><i
+                        class="fa-solid fa-circle-info"></i>회원정보
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="menu-message" data-bs-toggle="pill" data-bs-target="#content-message"
+                        type="button" role="tab" aria-controls="content-message" aria-selected="false"><i
+                        class="fa-solid fa-envelope"></i>메세지함
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="menu-mygroup" data-bs-toggle="pill" data-bs-target="#content-mygroup"
+                        type="button" role="tab" aria-controls="content-mygroup" aria-selected="false"><i
+                        class="fa-solid fa-user-group"></i>나의모임
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="menu-likegroup" data-bs-toggle="pill" data-bs-target="#content-likegroup"
+                        type="button" role="tab" aria-controls="content-likegroup" aria-selected="false"><i
+                        class="fa-solid fa-heart"></i>찜한모임
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="menu-partingroup" data-bs-toggle="pill"
+                        data-bs-target="#content-partingroup" type="button" role="tab"
+                        aria-controls="content-partingroup" aria-selected="false"><i class="fa-solid fa-handshake"></i>참가모임
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="menu-delete" data-bs-toggle="pill" data-bs-target="#content-delete"
+                        type="button" role="tab" aria-controls="content-delete" aria-selected="false"><i
+                        class="fa-solid fa-user-xmark"></i>회원탈퇴
+                </button>
+            </li>
+        </ul>
+    </div>
 
     <!--    회원정보-->
     <div class="tab-content col-7" id="pills-tabContent" style="padding: 0">
@@ -90,41 +99,56 @@
                 </div>
 
                 <div class="col-6" style="padding: 0">
-                    <table>
-                        <tr>
-                            <th>이름</th>
-                            <td><input type="text" class="form-control" value="크루즈" readonly disabled></td>
-                        </tr>
-                        <tr>
-                            <th>아이디</th>
-                            <td><input type="text" class="form-control" value="crewz" readonly disabled></td>
-                        </tr>
-                        <tr>
-                            <th style="vertical-align: top;">비밀번호</th>
-                            <td><input type="password" class="form-control" value="123" readonly disabled><br/>
-                                <input type="password" class="form-control" placeholder="새로운 비밀번호"><br/>
-                                <input type="password" class="form-control" placeholder="새로운 비밀번호 확인"></td>
-                            <td style="vertical-align: bottom">
-                                <button type="submit" class="btn btn-danger">변경</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>생년월일</th>
-                            <td><input type="date" class="form-control" value="2023-11-07" readonly disabled></td>
-                        </tr>
-                        <tr>
-                            <th>전화번호</th>
-                            <td><input type="text" class="form-control" value="012-3456-7890"></td>
-                            <td>
-                                <button type="submit" class="btn btn-danger">변경</button>
-                            </td>
-                        </tr>
-                    </table>
+                    <form action="/member/edit" method="post">
+                        <input type="hidden" name="photo" value="null">
+                        <input type="hidden" name="site" value="null">
+                        <table>
+                            <tr>
+                                <th>이름</th>
+                                <td><input type="text" class="form-control" th:value="${m.name}" name="name"
+                                           th:readonly="true" ></td>
+                            </tr>
+                            <tr>
+                                <th>아이디</th>
+                                <td><input type="text" class="form-control" th:value="${m.id}" name="id" id="id"
+                                           th:readonly="true" ></td>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align: top;">비밀번호</th>
+                                <td><input type="password" class="form-control" name="pwd" id="pwd" th:value="${m.pwd}"
+                                           th:readonly="true" ><br/>
+                                    <input type="password" class="form-control" name="pwdNew1" id="pwdNew1"
+                                           placeholder="새로운 비밀번호"><br/>
+                                    <input type="password" class="form-control" name="pwdNew2" id="pwdNew2"
+                                           oninput="checkPwd()" placeholder="새로운 비밀번호 확인">
+                                    <label for="pwdNew2" id="pwdStatusFail">비밀번호가 일치하지 않습니다.</label>
+                                    <label for="pwdNew2" id="pwdStatusSuccess">비밀번호가 일치합니다.</label>
+                                </td>
+
+<!--                                <td style="vertical-align: bottom">-->
+<!--                                    <button type="submit" class="btn btn-danger" onclick="pwdChange()">변경</button>-->
+<!--                                </td>-->
+                            </tr>
+                            <tr>
+                                <th>생년월일</th>
+                                <td><input type="date" class="form-control" name="birth" th:value="${m.birth}"
+                                           th:readonly="true" disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>전화번호</th>
+                                <td><input type="text" class="form-control" name="tel" th:value="${m.tel}"></td>
+                                <td>
+                                    <button type="submit" id="submitBtn" class="btn btn-danger">변경</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>
 
-<!--        메세지함-->
+        <!--        메세지함-->
         <div class="tab-pane fade" id="content-message" role="tabpanel" aria-labelledby="menu-message" tabindex="0">
             <div class="col-7">
                 <div class="menu-msg">
@@ -169,7 +193,7 @@
             참가모임
         </div>
 
-<!--        회원탈퇴-->
+        <!--        회원탈퇴-->
         <div class="tab-pane fade" id="content-delete" role="tabpanel" aria-labelledby="menu-delete" tabindex="0">
             <div class="col-7">
                 <p style="font-weight: bold;font-size: 36px;">회원 탈퇴</p>
@@ -188,27 +212,50 @@
                         탈퇴하는 이유를 선택해주세요</h6>
                     <ul class="list-reason">
                         <li class="list-group-item">
-                            <input class="reason" type="radio" value="1" id="firstRadio">
+                            <input class="reason" type="radio" th:value="1" id="firstRadio">
                             <label class="form-check-label" for="firstRadio">서비스를 사용하지 않아서</label>
                         </li>
                         <li class="list-group-item">
-                            <input class="reason" type="radio" value="2" id="secondRadio">
+                            <input class="reason" type="radio" th:value="2" id="secondRadio">
                             <label class="form-check-label" for="secondRadio">이용하기 불편해서</label>
                         </li>
                         <li class="list-group-item">
-                            <input class="reason" type="radio" value="3" id="thirdRadio">
+                            <input class="reason" type="radio" th:value="3" id="thirdRadio">
                             <label class="form-check-label" for="thirdRadio">####</label>
                         </li>
                     </ul>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-danger" id="delete">탈퇴</button>
+                    <button type="submit" class="btn btn-danger" id="delete" onclick="delMember()">탈퇴</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function checkPwd() {
+            let pwdNew1 = $("#pwdNew1").val();
+            let pwdNew2 = $("#pwdNew2").val();
+            if (pwdNew1 == pwdNew2) {
+                $("#pwd").val(pwdNew2);
+                $("#submitBtn").prop("disabled", false);
+                $("#pwdStatusSuccess").show();
+                $("#pwdStatusFail").hide();
+            } else if (pwdNew1 != pwdNew2) {
+                $("#submitBtn").prop("disabled", true);
+                $("#pwdStatusSuccess").hide();
+                $("#pwdStatusFail").show();
+            }
+        }
+
+        function delMember() {
+            let id = $("#id").val();
+            if (window.confirm("정말로 탈퇴하시겠습니까?") == true) {
+                location.href = "/member/delete?id=" + id;
+            }
+        }
+    </script>
 </div>
 <div class="col-1"></div>
 </body>

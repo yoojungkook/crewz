@@ -3,10 +3,11 @@ package com.project.crewz.member;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class MemberController {
@@ -44,39 +45,56 @@ public class MemberController {
     }
 
     //내정보조회
-    @GetMapping("/member/get")
-    public ModelAndView getMember(String id){
-        ModelAndView mav = new ModelAndView("/mypage/myinfo");
+    @GetMapping("/myinfo/mypage")
+    public String getMember(String id, Model model){
         Member m = service.get(id);
 
-        mav.addObject("m", m);
-        return mav;
+        model.addAttribute("m", m);
+        return "mypage/myinfo";
     }
 
     //마이페이지 - 내정보수정
     @PostMapping("/member/edit")
-    public String editMember(Member m){
+    public String editMember(Member m, Model model){
         service.edit(m);
-        return "/mypage/myinfo";
+        model.addAttribute("m", m);
+
+        return "redirect:/myinfo/mypage?id=" + m.getId();
     }
+
 
     //로그아웃
     @GetMapping("/member/logout")
     public String logout(HttpSession session){
-        session.invalidate();
-        return "/index";
+        session.invalidate();//서버세션
+        return "redirect:/";
     }
 
     //회원탈퇴
     @RequestMapping("/member/delete")
     public String delMember(String id){
         service.delete(id);
-        return "/index";
+        return "redirect:/";
     }
 
     //아이디 중복 확인
     @PostMapping("/member/checkId")
     public int idCheck(String id){
         return service.getById(id);//1을 반환하면 중복, 0이면 중복아님
+    }
+
+    @ResponseBody
+    @PostMapping("/logincheck")
+    public Map check(@RequestParam("id") String id, @RequestParam("pwd") String pwd) {
+        Map map = new HashMap();
+
+        Member member = service.getMember(id, pwd);
+
+        if(member != null && member.getId() != null) {
+            map.put("id", id);
+        } else {
+            map.put("id", null);
+        }
+        return map;
     }
 }

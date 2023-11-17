@@ -5,8 +5,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MemberService {
-    @Autowired
     private MemberDao dao;
+
+    @Autowired
+    public void setMemberDao(MemberDao dao) {
+        this.dao = dao;
+    }
+
+    public Member getMember(String id, String pwd) {
+        return dao.selectByMember(id, pwd);
+    }
 
     public void join(Member m) {
         dao.insert(m);
@@ -24,7 +32,7 @@ public class MemberService {
         dao.delete(id);
     }
 
-    public int getById(String id){
+    public int getById(String id) {
         return dao.selectById(id);
     }
 }
