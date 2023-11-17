@@ -3,127 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <style>
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/mypage/mypage.css">
 
-        table {
-            border-collapse: separate;
-            border-spacing: 30px 30px;
-        }
-
-        th {
-            text-align: center;
-        }
-
-        td, input {
-            text-align: left;
-        }
-
-        button {
-            background-color: #fcf9f9;
-        }
-
-        /*프로필사진*/
-        #profile {
-            position: relative;
-            top: 30px;
-        }
-
-        #profile-container {
-            width: 100px;
-            height: 100px;
-            border-radius: 70%;
-            overflow: hidden;
-        }
-
-        #profile-img {
-            width: 100%;
-            height: 100px;
-            object-fit: cover;
-        }
-
-        /*메뉴*/
-        ul#menu {
-            list-style-type: none;
-            margin: auto;
-            padding: 0;
-            width: 200px;
-
-            border-radius: 5px;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-        }
-
-        ul#menu li button {
-            width: 200px;
-            height: 50px;
-            padding-left: 20px;
-            line-height: 50px;
-            display: block; /*링크를 블록으로 만들어서 링크 영역 전체를 클릭할 수 있게 한다*/
-            overflow: hidden;
-            font-size: 14px;
-            color: #686868;
-
-            transition: all 0.2s linear; /*상태변화: 적용할속성 총시간 진행속도 */
-            -webkit-transition: all 0.2s linear;
-            -moz-transition: all 0.2s linear;
-            -o-transition: all 0.2s linear;
-        }
-
-        ul#menu i {
-            margin-right: 15px;
-
-            transition: all 0.2s linear;
-            -webkit-transition: all 0.2s linear;
-            -moz-transition: all 0.2s linear;
-            -o-transition: all 0.2s linear;
-        }
-
-        ul#menu li button:hover i {
-            color: #fc4c4c;
-        }
-
-        .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
-            background-color: #efefef;
-        }
-
-        .nav-pills .nav-link.active i{
-            color: #fc4c4c;
-        }
-
-        /*메세지 메뉴*/
-        .menu-msg a {
-            display: inline-block;
-            color: #fc4c4c;
-            text-align: center;
-            padding: 10px;
-            text-decoration: none;
-            font-size: 10px;
-            border-radius: 5px;
-            border-color: #fc4c4c;
-        }
-
-        .menu-msg a:hover {
-            background-color: #ddd;
-            color: #fc4c4c;
-        }
-
-        .menu-msg a.active {
-            background-color: #fc4c4c;
-            color: white;
-        }
-    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        //화면 시작
+        $(document).ready(function () {
+            $("#pwdStatusSuccess").hide();
+            $("#pwdStatusFail").hide();
+        });
+    </script>
 </head>
 <body>
 
@@ -133,7 +26,7 @@
             <div class="col"></div>
             <div class="col-6">
                 <a href="">
-                    <img src="/로고.png" style="width: 150px;height: 75px;">
+                    <img src="/logo.png" style="width: 150px;height: 75px;">
                 </a>
                 마이페이지
             </div>
@@ -188,7 +81,7 @@
         </ul>
     </div>
 
-<!--    회원정보-->
+    <!--    회원정보-->
     <div class="tab-content col-7" id="pills-tabContent" style="padding: 0">
         <div class="tab-pane fade show active" id="content-myinfo" role="tabpanel" aria-labelledby="menu-myinfo"
              tabindex="0">
@@ -196,7 +89,7 @@
                 <div class="col-1" id="profile" style="padding: 0">
                     <figure class="figure">
                         <div id="profile-container">
-                            <image id="profile-img" src="/로고.png"/>
+                            <image id="profile-img" src="/logo.png"/>
                         </div>
                         <br/>
                         <a href="">
@@ -206,41 +99,56 @@
                 </div>
 
                 <div class="col-6" style="padding: 0">
-                    <table>
-                        <tr>
-                            <th>이름</th>
-                            <td><input type="text" class="form-control" value="크루즈" readonly disabled></td>
-                        </tr>
-                        <tr>
-                            <th>아이디</th>
-                            <td><input type="text" class="form-control" value="crewz" readonly disabled></td>
-                        </tr>
-                        <tr>
-                            <th style="vertical-align: top;">비밀번호</th>
-                            <td><input type="password" class="form-control" value="123" readonly disabled><br/>
-                                <input type="password" class="form-control" placeholder="새로운 비밀번호"><br/>
-                                <input type="password" class="form-control" placeholder="새로운 비밀번호 확인"></td>
-                            <td style="vertical-align: bottom">
-                                <button type="submit" class="btn btn-danger">변경</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>생년월일</th>
-                            <td><input type="date" class="form-control" value="2023-11-07" readonly disabled></td>
-                        </tr>
-                        <tr>
-                            <th>전화번호</th>
-                            <td><input type="text" class="form-control" value="012-3456-7890"></td>
-                            <td>
-                                <button type="submit" class="btn btn-danger">변경</button>
-                            </td>
-                        </tr>
-                    </table>
+                    <form action="/member/edit" method="post">
+                        <input type="hidden" name="photo" value="null">
+                        <input type="hidden" name="site" value="null">
+                        <table>
+                            <tr>
+                                <th>이름</th>
+                                <td><input type="text" class="form-control" th:value="${m.name}" name="name"
+                                           th:readonly="true" ></td>
+                            </tr>
+                            <tr>
+                                <th>아이디</th>
+                                <td><input type="text" class="form-control" th:value="${m.id}" name="id" id="id"
+                                           th:readonly="true" ></td>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align: top;">비밀번호</th>
+                                <td><input type="password" class="form-control" name="pwd" id="pwd" th:value="${m.pwd}"
+                                           th:readonly="true" ><br/>
+                                    <input type="password" class="form-control" name="pwdNew1" id="pwdNew1"
+                                           placeholder="새로운 비밀번호"><br/>
+                                    <input type="password" class="form-control" name="pwdNew2" id="pwdNew2"
+                                           oninput="checkPwd()" placeholder="새로운 비밀번호 확인">
+                                    <label for="pwdNew2" id="pwdStatusFail">비밀번호가 일치하지 않습니다.</label>
+                                    <label for="pwdNew2" id="pwdStatusSuccess">비밀번호가 일치합니다.</label>
+                                </td>
+
+<!--                                <td style="vertical-align: bottom">-->
+<!--                                    <button type="submit" class="btn btn-danger" onclick="pwdChange()">변경</button>-->
+<!--                                </td>-->
+                            </tr>
+                            <tr>
+                                <th>생년월일</th>
+                                <td><input type="date" class="form-control" name="birth" th:value="${m.birth}"
+                                           th:readonly="true" disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>전화번호</th>
+                                <td><input type="text" class="form-control" name="tel" th:value="${m.tel}"></td>
+                                <td>
+                                    <button type="submit" id="submitBtn" class="btn btn-danger">변경</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>
 
-<!--        메세지함-->
+        <!--        메세지함-->
         <div class="tab-pane fade" id="content-message" role="tabpanel" aria-labelledby="menu-message" tabindex="0">
             <div class="col-7">
                 <div class="menu-msg">
@@ -285,7 +193,7 @@
             참가모임
         </div>
 
-<!--        회원탈퇴-->
+        <!--        회원탈퇴-->
         <div class="tab-pane fade" id="content-delete" role="tabpanel" aria-labelledby="menu-delete" tabindex="0">
             <div class="col-7">
                 <p style="font-weight: bold;font-size: 36px;">회원 탈퇴</p>
@@ -304,25 +212,50 @@
                         탈퇴하는 이유를 선택해주세요</h6>
                     <ul class="list-reason">
                         <li class="list-group-item">
-                            <input class="reason" type="radio" value="1" id="firstRadio">
+                            <input class="reason" type="radio" th:value="1" id="firstRadio">
                             <label class="form-check-label" for="firstRadio">서비스를 사용하지 않아서</label>
                         </li>
                         <li class="list-group-item">
-                            <input class="reason" type="radio" value="2" id="secondRadio">
+                            <input class="reason" type="radio" th:value="2" id="secondRadio">
                             <label class="form-check-label" for="secondRadio">이용하기 불편해서</label>
                         </li>
                         <li class="list-group-item">
-                            <input class="reason" type="radio" value="3" id="thirdRadio">
+                            <input class="reason" type="radio" th:value="3" id="thirdRadio">
                             <label class="form-check-label" for="thirdRadio">####</label>
                         </li>
                     </ul>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-danger" id="delete">탈퇴</button>
+                    <button type="submit" class="btn btn-danger" id="delete" onclick="delMember()">탈퇴</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function checkPwd() {
+            let pwdNew1 = $("#pwdNew1").val();
+            let pwdNew2 = $("#pwdNew2").val();
+            if (pwdNew1 == pwdNew2) {
+                $("#pwd").val(pwdNew2);
+                $("#submitBtn").prop("disabled", false);
+                $("#pwdStatusSuccess").show();
+                $("#pwdStatusFail").hide();
+            } else if (pwdNew1 != pwdNew2) {
+                $("#submitBtn").prop("disabled", true);
+                $("#pwdStatusSuccess").hide();
+                $("#pwdStatusFail").show();
+            }
+        }
+
+        function delMember() {
+            let id = $("#id").val();
+            if (window.confirm("정말로 탈퇴하시겠습니까?") == true) {
+                location.href = "/member/delete?id=" + id;
+            }
+        }
+    </script>
 </div>
 <div class="col-1"></div>
 </body>

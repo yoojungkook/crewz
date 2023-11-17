@@ -1,12 +1,12 @@
-$("#joinmodal").on('shown.bs.modal', function() {
+$("#joinmodal").on('shown.bs.modal', function () {
 
 })
 
-$(".dropdown-item category").click(function(e) {
+$(".dropdown-item category").click(function (e) {
     $("#category-box").text($(this).text());
 })
 
-$(".msg-info").on('shown.bs.modal', function(e) {
+$(".msg-info").on('shown.bs.modal', function (e) {
 
 })
 
@@ -20,11 +20,10 @@ let count = 0;
 let scrollCheck = true;
 
 const ch = () => {
-    if(scrollCheck) {
+    if (scrollCheck) {
         $.ajax({
             url: "/html/notification-msg.html",
             type: "get",
-            // data: {"no" : count},
             datatype: "html",
             success: function (result) {
                 $.ajax({
@@ -58,8 +57,8 @@ const ch = () => {
     }
 }
 
-$('#msg-body').scroll(function() {
-    if(scrollCheck) {
+$('#msg-body').scroll(function () {
+    if (scrollCheck) {
         console.log("이동!");
         let scrollTop = $(this).scrollTop();
         let innerHeight = $(this).innerHeight();
@@ -77,3 +76,20 @@ $('#msg-body').scroll(function() {
         }
     }
 });
+
+const info = (value) => {
+    location.href = "/category/" + value + "/view?num=1";
+}
+
+const id = sessionStorage.getItem("loginId");
+const mypage = () => {
+    location.href = "/myinfo/mypage?id=" + id;
+}
+
+function home() {
+    location.href = "/";
+}
+
+function logout() {
+    location.href = "/member/logout";
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div th:fragment="somoim-info" class="container">
+		<!-- 소모임 리스트 -->
+		<span id="item-area"></span>
+		<!--
+			resources/static/html/somoim-item.html -> 이 html 조각 페이지가 div(id=item-area) 태그 안에 추가됨
+
+			resources/static/js/moim/somoim-list.js -> 참조, moim.html의 onclick="somoim(0)" 클릭시 실행되는 js파일
+    	-->
+
+		<!-- 글 작성 폼 버튼  -->
+		<div class="container fixed-bottom d-flex justify-content-end" style="padding-bottom: 20px;">
+			<img src="/img/plusbotton.png" style="width: 60px; height: 60px" data-bs-toggle="modal" data-bs-target="#staticBackdrop"/>
+		</div>
+
+		<!-- 글 작성 폼 -->
+		<div th:replace="~{moim/somoim-form :: form}"></div>
+	</div>
+</body>
+</html>

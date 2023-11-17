@@ -12,6 +12,7 @@ import java.sql.Date;
 public class Member {
     private String id;
     private String pwd;
+    private String name;
     private Date birth;
     private String tel;
     private String photo;
