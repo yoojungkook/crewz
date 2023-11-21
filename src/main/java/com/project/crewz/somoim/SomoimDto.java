@@ -4,12 +4,14 @@ import lombok.*;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Somoim {
+public class SomoimDto {
     private int no;
     private String title;
     private Date jdate;
@@ -18,4 +20,5 @@ public class Somoim {
     private int total;
     private String photo;
     private int moimno;
+    private MultipartFile f;
 }
