@@ -12,6 +12,7 @@ import java.sql.Date;
 public class Somoim {
     private int no;
     private String title;
+    private Date jdate;
     private Date mdate;
     private String loc;
     private int total;
