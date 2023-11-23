@@ -91,5 +91,7 @@ function home() {
 }
 
 function logout() {
-    location.href = "/member/logout";
+    // sessionStorage.clear();
+    sessionStorage.removeItem("loginId");
+    location.href = "/";
 }
