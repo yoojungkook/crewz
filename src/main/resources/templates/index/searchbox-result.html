@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-    <div th:fragment="search-box(category, list, msg)" class="container d-flex justify-content-center" style="padding-bottom: 20px">
+    <div th:fragment="search-box(category, list, msgSend)" class="container d-flex justify-content-center" style="padding-bottom: 20px">
         <form class="col-lg-10" style="display: flex; align-items: center">
             <div id="category" class="btn-group">
-                <button id="category-box" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" th:text="${category}">
+                <button id="category-box" th:num="${num}" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" th:text="${category}">
+                    카테고리
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="category-box">
                     <li><a class="dropdown-item disabled category">카테고리</a></li>
@@ -12,19 +13,19 @@
                       <hr class="dropdown-divider">
                     </li>
                     <li th:each="cat : ${catlist}">
-                      <a class="dropdown-item category cat" th:onclick="catchange([[${cat.name}]])" th:text="${cat.name}"></a>
+                      <a class="dropdown-item category cat" th:num="${cat.no}" th:onclick="catchange([[${cat.name}]], this)" th:text="${cat.name}"></a>
                     </li>
                     <li>
                       <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item category" onclick="catchange('모임제목')">모임제목</a></li>
-                    <li><a class="dropdown-item category" onclick="catchange('작성자')">작성자</a></li>
+                    <li><a class="dropdown-item category" num="1000" onclick="catchange('모임제목', this)">모임제목</a></li>
+                    <li><a class="dropdown-item category" num="2000" onclick="catchange('작성자', this)">작성자</a></li>
                 </ul>
             </div>
-            <th:block th:if="${msg != null}">
-                <input id="search-box" type="box" th:value="${msg}">
+            <th:block th:if="${msgSend != null}">
+                <input id="search-box" type="box" th:value="${msgSend}">
             </th:block>
-            <th:block th:if="${msg == null}">
+            <th:block th:if="${msgSend == null}">
                 <input id="search-box" type="box">
             </th:block>
         </form>
