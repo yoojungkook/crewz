@@ -32,7 +32,11 @@ public class MemberService {
         dao.delete(id);
     }
 
-    public int getById(String id) {
+    public int countById(String id) {
         return dao.selectById(id);
+    }
+
+    public void editProfile(String id, String photo) {
+        dao.updateProfile(id, photo);
     }
 }

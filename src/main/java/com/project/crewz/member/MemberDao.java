@@ -13,12 +13,15 @@ public interface MemberDao {
     @Select("SELECT * FROM member WHERE id=#{id}")
     Member select(@Param("id") String id);
 
-    @Update("UPDATE member SET pwd=#{pwd}, tel = #{tel}, photo = #{photo} WHERE id=#{id}")
+    @Update("UPDATE member SET pwd=#{pwd}, tel = #{tel} WHERE id=#{id}")
     void update(Member m);
 
     @Delete("DELETE FROM member WHERE id=#{id}")
     void delete(@Param("id") String id);
 
-    @Select("SELECT count(*) From member WHERE id=#{id}")
+    @Select("SELECT count(*) FROM member WHERE id=#{id}")
     int selectById(@Param("id") String id);
+
+    @Update("UPDATE member SET photo=#{photo} WHERE id=#{id}")
+    void updateProfile(@Param("id") String id, @Param("photo") String photo);
 }
