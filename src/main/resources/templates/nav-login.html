@@ -2,12 +2,12 @@
 <html lang="en">
 <body>
     <div th:fragment="login-info" class="container d-flex justify-content-center">
-        <li class="row align-items-center nav-item p-2 btn-group" onclick="ch()">
+        <li class="row align-items-center nav-item p-2 btn-group" onclick="msgCheck()">
             <div id="notification" class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static"
                  aria-expanded="false">
                 <ul class="dropdown-menu dropdown-menu-lg-end" style="top: 40px; right: 20px; width: 400px;">
                     <li>
-                        <a class="dropdown-item" href="#">알림</a>
+                        <a class="dropdown-item" href="javascript:void(0)">알림 <span style="float: right" data-bs-target="#writemsg" data-bs-toggle="modal">쪽지 쓰기</span></a>
                     </li>
                     <li>
                         <hr class="dropdown-divider">

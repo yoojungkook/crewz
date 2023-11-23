@@ -24,3 +24,11 @@
     background-size: 30px;
     background-position: center
 }
+
+.dropdown-item {
+    background-color: unset;
+}
+
+.dropdown-item:hover {
+    background-color: unset;
+}

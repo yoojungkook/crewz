@@ -2,13 +2,13 @@
 <html lang="en">
 <body>
 <!--    <span th:fragment="item">-->
-        <div class="col" th:fragment="item" th:each="msg, i : ${list}">
+        <div class="col" th:fragment="item" th:each="msgSend, i : ${list}">
             <div class="card" style="border: 1px solid gainsboro" th:onclick="info([[${i.index}]])">
-                <img src="/img/9596881ac8a6f4b0ddd2fb32aaf896e0.jpg" style="height: 170px;" class="card-img-top"
+                <img th:src="@{/search/category(name = ${msgSend.memberid}, no = ${msgSend.no}, filename = ${msgSend.photo})}" style="height: 170px;" class="card-img-top"
                      alt="...">
                 <div class="card-body">
-                    <h5 style="margin-bottom: 0" class="card-title" th:text="${msg.title}"></h5>
-                    <p style="margin-bottom: 1px" class="card-text">한줄 소개</p>
+                    <h5 style="margin-bottom: 0" class="card-title" th:text="${msgSend.title}"></h5>
+                    <p style="margin-bottom: 1px" class="card-text" th:text="${msgSend.info}"></p>
                     <div style="float: left">
                         인원: 00명
                     </div>
