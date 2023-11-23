@@ -2,16 +2,7 @@
 <nav th:fragment="navbar" class="navbar navbar-expand-lg" style="height: 70px;">
     <div class="container-fluid d-flex flex-row-reverse">
         <div id="navbarNav">
-            <ul class="navbar-nav">
-                <!-- 로그인 되어 있을 때 -->
-                <th:block th:if="${log == true}">
-                    <div th:replace="~{nav-login :: login-info}"></div>
-                </th:block>
-
-                <!-- 로그아웃 되어 있을 때 -->
-                <th:block th:if="${log == false}">
-                    <div th:replace="~{nav-logout :: logout-info}"></div>
-                </th:block>
+            <ul id="logBox" class="navbar-nav">
             </ul>
         </div>
     </div>

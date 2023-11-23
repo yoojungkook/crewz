@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div th:fragment="login-info" class="container d-flex justify-content-center">
+        <li class="row align-items-center nav-item p-2 btn-group" onclick="ch()">
+            <div id="notification" class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static"
+                 aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-lg-end" style="top: 40px; right: 20px; width: 400px;">
+                    <li>
+                        <a class="dropdown-item" href="#">알림</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <div id="msg-body" style=" max-height: 350px" class="overflow-auto">
+                    </div>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item p-2 btn-group">
+            <div id="profile" class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-lg-end" style="top: 40px; right: 20px">
+                    <li><a class="dropdown-item" onclick="logout()" href="/member/logout">로그아웃</a></li>
+                    <li><a class="dropdown-item" onclick="mypage()" href="/myinfo/name">마이페이지</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">나의 모임</a></li>
+                    <li><a class="dropdown-item" href="#">좋아요</a></li>
+                    <li><a class="dropdown-item" href="#">리뷰 관리</a></li>
+                </ul>
+            </div>
+        </li>
+    </div>
+</body>
+</html>
