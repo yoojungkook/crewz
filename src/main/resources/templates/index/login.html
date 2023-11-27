@@ -11,28 +11,34 @@
                         <img src="/img/crewz.jpeg" style="width: 200px; height: 60px; text-align: center">
                     </div>
 
-                        <div class="container join">
-                            <input id="log-id" class="input-info" type="text" placeholder="아이디">
-                        </div>
-                        <div class="container join">
-                            <input id="log-pwd" class="input-info" type="password" placeholder="비밀번호">
-                        </div>
+                    <div class="container d-flex justify-content-center" style="padding-bottom: 10px">
+                        <div style="font-size: 20px;">로그인</div>
+                    </div>
 
-                        <div class="container d-flex justify-content-center" style="padding-bottom: 20px">
-                            <input id="join" type="button" value="LOG IN" onclick="memberLogin()" readonly>
-                        </div>
+                    <div class="container join">
+                        <input id="log-id" class="input-info" type="text" placeholder="아이디">
+                    </div>
+
+                    <div class="container join">
+                        <input id="log-pwd" class="input-info" type="password" placeholder="비밀번호">
+                    </div>
+
+                    <div class="container d-flex justify-content-center" style="padding-bottom: 20px">
+                        <input id="join" type="button" value="로그인" onclick="memberLogin()" readonly>
+                    </div>
 
                     <hr/>
 
                     <div class="container" style="font-size: 15px; text-underline: grey; color: grey; text-align: center">
-<!--                        <div onclick="joinModal()">회원가입</div>-->
-<!--                        TODO 아이디 찾기, 비밀번호 찾기-->
-                        <a href="#">회원가입</a> | <a href="#">아이디 찾기</a> | <a href="#">비밀번호 찾기</a>
+                        <a aria-current="page" data-bs-toggle="modal" data-bs-target="#joinmodal">회원가입</a> | <a aria-current="page" data-bs-toggle="modal" data-bs-target="#search-id-modal">아이디 찾기</a> | <a aria-current="page" data-bs-toggle="modal" data-bs-target="#search-pwd-modal">비밀번호 찾기</a>
                     </div>
                 </div>
+
             </div>
         </div>
+
     </div>
+
 </footer>
 </body>
 </html>
