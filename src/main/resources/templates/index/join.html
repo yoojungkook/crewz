@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-   <style>
+    <style>
         input[type='date']::before {
             content: attr(data-placeholder);
             width: 100%;
@@ -28,27 +28,33 @@
                         <input type="hidden" name="photo" value="null">
 
                         <div class="container join">
-                            <input class="input-info" type="text" name="id" placeholder="아이디" autocomplete="off" oninput="checkId()">
+                            <input class="input-info" type="text" name="id" placeholder="아이디" autocomplete="off"
+                                   oninput="checkId()">
                             <span id="idStatus" style="float: left"></span>
                         </div>
                         <div class="container join">
-                            <input class="input-info" type="password" name="pwd" placeholder="비밀번호" autocomplete="off" oninput="checkPwd()">
+                            <input class="input-info" type="password" name="pwd" placeholder="비밀번호" autocomplete="off"
+                                   oninput="checkPwd()">
                         </div>
                         <div class="container join">
-                            <input class="input-info" type="password" name="pwd2" placeholder="비밀번호 확인" autocomplete="off" oninput="checkPwd()">
+                            <input class="input-info" type="password" name="pwd2" placeholder="비밀번호 확인"
+                                   autocomplete="off" oninput="checkPwd()">
                             <span id="pwdStatus" style="float: left"></span>
                         </div>
                         <div class="container join">
                             <!-- oninput: 값이 바뀔 때마다 발생하는 이벤트-->
-                            <input class="input-info" type="text" name="name" placeholder="이름" autocomplete="off" oninput="checkName()">
+                            <input class="input-info" type="text" name="name" placeholder="이름" autocomplete="off"
+                                   oninput="checkName()">
                             <span id="nameStatus" style="float: left"></span>
                         </div>
                         <div class="container join">
-                            <input class="input-info" type="text" name="tel" placeholder="01012345678" autocomplete="off" oninput="checkTel()">
+                            <input class="input-info" type="text" name="tel" placeholder="01012345678"
+                                   autocomplete="off" oninput="checkTel()">
                             <span id="telStatus" style="float: left"></span>
                         </div>
                         <div class="container join">
-                            <input class="input-info" type="date" id="birth" name="birth" data-placeholder="생일" onchange="checkBirth()">
+                            <input class="input-info" type="date" id="birth" name="birth" data-placeholder="생일"
+                                   onchange="checkBirth()">
                         </div>
 
                         <div class="container d-flex justify-content-center join">
@@ -68,7 +74,9 @@
                         </div>
 
                         <div class="container d-flex justify-content-center">
-                            <button id="joinBtn" type="submit" class="btn btn-danger" oninput="checkAll()" disabled>가입</button>
+                            <button id="joinBtn" type="submit" class="btn btn-danger" oninput="checkAll()" onclick="join()" disabled>
+                                가입
+                            </button>
                         </div>
                     </form>
                 </div>
