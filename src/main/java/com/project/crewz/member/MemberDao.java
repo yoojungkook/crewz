@@ -24,4 +24,10 @@ public interface MemberDao {
 
     @Update("UPDATE member SET photo=#{photo} WHERE id=#{id}")
     void updateProfile(@Param("id") String id, @Param("photo") String photo);
+
+    @Select("SELECT id FROM member WHERE name=#{name} AND tel=#{tel}")
+    String selectIdByNameNTel(@Param("name") String name, @Param("tel") String tel);
+
+    @Select("SELECT pwd FROM member WHERE id=#{id} AND tel=#{tel}")
+    String selectPwdByIdNTel(@Param("id") String id, @Param("tel") String tel);
 }

@@ -39,4 +39,12 @@ public class MemberService {
     public void editProfile(String id, String photo) {
         dao.updateProfile(id, photo);
     }
+
+    public String findIdByNameNTel(String name, String tel) {
+        return dao.selectIdByNameNTel(name, tel);
+    }
+
+    public String findPwdByIdNTel(String id, String tel) {
+        return dao.selectPwdByIdNTel(id, tel);
+    }
 }

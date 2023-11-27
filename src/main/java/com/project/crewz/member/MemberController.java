@@ -176,4 +176,27 @@ public class MemberController {
         }
         return result;
     }
+
+    //아이디 찾기
+    @PostMapping("/find/id")
+    @ResponseBody
+    public String findId(String name, String tel) {
+        String result = service.findIdByNameNTel(name, tel);
+
+        if (result == null) {
+            result = "null";
+        }
+        return result;
+    }
+
+    //비밀번호 찾기
+    @PostMapping("/find/pwd")
+    @ResponseBody
+    public String findPwd(String id, String tel) {
+        String result = service.findPwdByIdNTel(id, tel);
+        if (result == null) {
+            result = "null";
+        }
+        return result;
+    }
 }

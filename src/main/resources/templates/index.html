@@ -18,69 +18,149 @@
     </style>
 </head>
 <body>
-    <!--회원가입/로그인-->
-    <nav class="navbar navbar-expand-lg" style="height: 70px;">
-        <div class="container-fluid d-flex flex-row-reverse">
-            <div id="navbarNav">
-                <ul id="logBox" class="navbar-nav">
+<!--회원가입/로그인-->
+<nav class="navbar navbar-expand-lg" style="height: 70px;">
+    <div class="container-fluid d-flex flex-row-reverse">
+        <div id="navbarNav">
+            <ul id="logBox" class="navbar-nav">
 
-                </ul>
-            </div>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- 중앙 컨텐츠 -->
-    <div id="wrapper">
-        <!--로고 사진-->
-        <div class="container d-flex justify-content-center" onclick="home()">
-            <div style="text-align: center;margin: 3px;">
-                <img id="logo" src="/img/home-logo.png"/>
-            </div>
-        </div><br/>
+<!-- 중앙 컨텐츠 -->
+<div id="wrapper">
+    <!--로고 사진-->
+    <div class="container d-flex justify-content-center" onclick="home()">
+        <div style="text-align: center;margin: 3px;">
+            <img id="logo" src="/img/home-logo.png"/>
+        </div>
+    </div>
+    <br/>
 
-        <!-- 검색창 -->
-        <div th:replace="~{index/searchbox :: box}"></div>
-        <br/>
+    <!-- 검색창 -->
+    <div th:replace="~{index/searchbox :: box}"></div>
+    <br/>
 
-        <!-- 카테고리 컨텐츠 -->
-        <div id="graybox" class="container d-flex justify-content-center">
-            <div class="d-flex flex-wrap">
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <div th:each="item : ${catlist}" class="col" style="padding: 0; margin: 0; text-align: center" >
-                        <div class="card" style="background-color: unset; border: 0" th:onclick="go([[${item.name}]])">
-                            <div class="card-body">
-                                <img style="width: 200px; height: 200px" src="/img/9596881ac8a6f4b0ddd2fb32aaf896e0.jpg"/>
-                                <p class="card-text" style="text-align: center" th:text="${item.name}"></p>
-                            </div>
+    <!-- 카테고리 컨텐츠 -->
+    <div id="graybox" class="container d-flex justify-content-center">
+        <div class="d-flex flex-wrap">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div th:each="item : ${catlist}" class="col" style="padding: 0; margin: 0; text-align: center">
+                    <div class="card" style="background-color: unset; border: 0" th:onclick="go([[${item.name}]])">
+                        <div class="card-body">
+                            <img style="width: 200px; height: 200px" src="/img/9596881ac8a6f4b0ddd2fb32aaf896e0.jpg"/>
+                            <p class="card-text" style="text-align: center" th:text="${item.name}"></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div th:if="${log == true}">
-        <div th:replace="~{index/msg :: msg}"></div>
+<div th:if="${log == true}">
+    <div th:replace="~{index/msg :: msg}"></div>
+</div>
+<div th:if="${log == false}">
+    <div th:replace="~{index/login :: login}">
     </div>
-    <div th:if="${log == false}">
-        <div th:replace="~{index/login :: login}">
-        </div>
-        <div th:replace="~{index/join :: join}">
-        </div>
+    <div th:replace="~{index/join :: join}">
     </div>
+</div>
 
-    <div th:if="${log == true}">
-        <div class="container-fluid fixed-bottom d-flex justify-content-end" style="padding-bottom: 20px;">
-            <img src="/img/plusbotton.png" style="width: 60px; height: 60px" data-bs-toggle="modal" data-bs-target="#staticBackdrop"/>
-        </div>
-        <div th:replace="~{index/moim-add :: addMoim}"></div>
-    </div>
+<div th:replace="~{index/search-id :: search-id}"></div>
+<div th:replace="~{index/search-pwd :: search-pwd}"></div>
 
-    <script src="/jquery-3.7.1.js"></script>
-    <script src="/bootstrap/js/bootstrap.js" defer></script>
-    <script src="/bootstrap/js/bootstrap.bundle.js" defer></script>
-    <script type="text/javascript" src="/js/cat/cat.js"></script>
-    <script type="text/javascript" src="/js/searchbox.js"></script>
-    <script type="text/javascript" src="/js/cat/logincheck.js"></script>
+<div th:if="${log == true}">
+    <div class="container-fluid fixed-bottom d-flex justify-content-end" style="padding-bottom: 20px;">
+        <img src="/img/plusbotton.png" style="width: 60px; height: 60px" data-bs-toggle="modal"
+             data-bs-target="#staticBackdrop"/>
+    </div>
+    <div th:replace="~{index/moim-add :: addMoim}"></div>
+</div>
+
+<script src="/jquery-3.7.1.js"></script>
+<script src="/bootstrap/js/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="/js/cat/cat.js"></script>
+<script type="text/javascript" src="/js/searchbox.js"></script>
+<script type="text/javascript" src="/js/cat/logincheck.js"></script>
+<script type="text/javascript" src="/js/cat/joincheck.js"></script>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+    function searchId() {
+        var name = $("#name").val();
+        var tel = $("#tel").val();
+
+        $.ajax({
+            type: "POST",
+            data: {"name": name, "tel": tel},
+            url: "/find/id",
+            success: function (data) {
+                if (data == "null") {
+
+                    Swal.fire({
+                        text: "아이디를 찾을 수 없습니다.",
+                        icon: "error",
+                        confirmButtonColor: "#db3545",
+                        confirmButtonText: "확인"
+                    });
+
+                    $("#name").val('');
+                    $("#tel").val('');
+                } else if (data != "null") {
+
+                    Swal.fire({
+                        text: "회원님의 아이디는 " + data + "입니다.",
+                        icon: "success",
+                        confirmButtonColor: "#db3545",
+                        confirmButtonText: "확인"
+                    });
+
+                    $("#name").val('');
+                    $("#tel").val('');
+                }
+            }
+        });
+    }
+
+    function searchPwd() {
+        var id = $("#id").val();
+        var tel = $("#tel2").val();
+
+        $.ajax({
+            type: "POST",
+            data: {"id": id, "tel": tel},
+            url: "/find/pwd",
+            success: function (data) {
+                if (data == "null") {
+
+                    Swal.fire({
+                        text: "비밀번호를 찾을 수 없습니다.",
+                        icon: "error",
+                        confirmButtonColor: "#db3545",
+                        confirmButtonText: "확인"
+                    });
+
+                    $("#id").val('');
+                    $("#tel2").val('');
+                } else if (data != "null") {
+
+                    Swal.fire({
+                        text: "회원님의 비밀번호는 " + data + "입니다.",
+                        icon: "success",
+                        confirmButtonColor: "#db3545",
+                        confirmButtonText: "확인"
+                    });
+
+                    $("#id").val('');
+                    $("#tel2").val('');
+                }
+            }
+        });
+    }
+</script>
 </html>
