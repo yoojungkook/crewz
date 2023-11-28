@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+#wrapper {
+    max-width: 700px;
+    padding: 0;
+    margin: auto;
+}
+
+.rounded {
+    width: 150px;
+    height: 150px;
+}
+
+.image-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+a {
+    text-decoration: none;
+    color:inherit;
+}
+
+#graybox {
+    height: 450px;
+    box-shadow: 2px 2px 2px 2px grey;
+    padding: 30px;
+    border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
+    background-color: #F7F7F7;
+    overflow: auto;
+}
+
+#logo {
+    width: 200px;
+    height: 100px;
+    border-radius: 5px
+}
