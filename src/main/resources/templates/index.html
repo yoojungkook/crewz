@@ -50,7 +50,6 @@
             </div>
         </div>
     </div>
-  
     <!-- 로그인 되어 있지 않을 때 -->
     <div th:if="${log == false}">
         <div th:replace="~{index/login :: login}">
@@ -58,8 +57,13 @@
         <div th:replace="~{index/join :: join}">
         </div>
     </div>
+</div>
 
-    <!-- 로그인 되어 있을 때 -->
+  <!-- 아이디, 비밀번호 찾기 모달창 -->
+  <div th:replace="~{index/search-id :: search-id}"></div>
+  <div th:replace="~{index/search-pwd :: search-pwd}"></div>
+
+  <!-- 로그인 되어 있을 때 -->
     <div th:if="${log == true}">
         <div th:replace="~{index/msg :: msgSend}"></div>
         <div th:replace="~{index/msg-write :: msgSend-choice}"></div>
@@ -68,6 +72,8 @@
             <img src="/img/plusbotton.png" style="width: 60px; height: 60px" data-bs-toggle="modal" data-bs-target="#staticBackdrop"/>
         </div>
     </div>
+    <div th:replace="~{index/moim-add :: addMoim}"></div>
+</div>
 
     <script src="/jquery-3.7.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
@@ -80,4 +86,79 @@
     <script type="text/javascript" src="/js/notification.js"></script>
     <script type="text/javascript" src="/js/cat/logincheck.js"></script>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+    function searchId() {
+        var name = $("#name").val();
+        var tel = $("#tel").val();
+
+        $.ajax({
+            type: "POST",
+            data: {"name": name, "tel": tel},
+            url: "/find/id",
+            success: function (data) {
+                if (data == "null") {
+
+                    Swal.fire({
+                        text: "아이디를 찾을 수 없습니다.",
+                        icon: "error",
+                        confirmButtonColor: "#db3545",
+                        confirmButtonText: "확인"
+                    });
+
+                    $("#name").val('');
+                    $("#tel").val('');
+                } else if (data != "null") {
+
+                    Swal.fire({
+                        text: "회원님의 아이디는 " + data + "입니다.",
+                        icon: "success",
+                        confirmButtonColor: "#db3545",
+                        confirmButtonText: "확인"
+                    });
+
+                    $("#name").val('');
+                    $("#tel").val('');
+                }
+            }
+        });
+    }
+
+    function searchPwd() {
+        var id = $("#id").val();
+        var tel = $("#tel2").val();
+
+        $.ajax({
+            type: "POST",
+            data: {"id": id, "tel": tel},
+            url: "/find/pwd",
+            success: function (data) {
+                if (data == "null") {
+
+                    Swal.fire({
+                        text: "비밀번호를 찾을 수 없습니다.",
+                        icon: "error",
+                        confirmButtonColor: "#db3545",
+                        confirmButtonText: "확인"
+                    });
+
+                    $("#id").val('');
+                    $("#tel2").val('');
+                } else if (data != "null") {
+
+                    Swal.fire({
+                        text: "회원님의 비밀번호는 " + data + "입니다.",
+                        icon: "success",
+                        confirmButtonColor: "#db3545",
+                        confirmButtonText: "확인"
+                    });
+
+                    $("#id").val('');
+                    $("#tel2").val('');
+                }
+            }
+        });
+    }
+</script>
 </html>

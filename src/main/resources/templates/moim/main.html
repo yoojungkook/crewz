@@ -57,7 +57,7 @@
 			<div class="tab-pane fade" id="pills-picture" role="tabpanel" aria-labelledby="pills-picture-tab" tabindex="0">
 				<div th:replace="~{moim/album :: item}"></div>
 			</div>
-			<div class="tab-pane fade" id="pills-board" role="tabpanel" aria-labelledby="pills-board-tab" tabindex="0">
+			<div th:insert="~{moim/board :: moim-board}" class="tab-pane fade" id="pills-board" role="tabpanel" aria-labelledby="pills-board-tab" tabindex="0">
 				게시판
 			</div>
 			<div th:insert="~{moim/somoim :: somoim-info}" class="tab-pane fade" id="pills-somoim" role="tabpanel"
@@ -71,5 +71,14 @@
 	<script type="text/javascript" src="/jquery-3.7.1.js"></script>
 	<script type="text/javascript" src="/bootstrap/js/bootstrap.bundle.js"></script>
 	<script type="text/javascript" src="/js/moim/**.js"></script>
+
+	<script type="text/javascript">
+		// textarea 크기 자동조절
+		function autoHeight() {
+			var textarea = document.getElementById("board-content");
+			textarea.style.height = "auto"; // Reset height to auto to calculate the actual scrollHeight
+			textarea.style.height = (textarea.scrollHeight) + "px";
+		}
+	</script>
 </body>
 </html>

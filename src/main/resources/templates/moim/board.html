@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<div th:fragment="moim-board" class="container">
+    <!-- 채팅창/게시판 -->
+    <span id="item-area"></span>
+
+    <div class="container text-left">
+        <div class="row">
+            <div class="col-2" id="board-profile" align="right">
+                <div id="board-profile-container">
+                    <img id="board-profile-img" src="/logo.png"/>
+                </div>
+            </div>
+            <div class="col-10">
+                <input type="text" id="board-title" name="title" value="제목입니다." style="border: none;font-weight: bold" readonly>
+                <textarea id="board-content" name="content"
+                          style="width: 100%;border: none;resize: none;overflow-y: hidden" onchange="autoHeight()"
+                          readonly>크루즈 게시판에 작성될 내용입니다 크루즈 게시판에 작성될 내용입니다 크루즈 게시판에 작성될 내용입니다 크루즈 게시판에 작성될 내용입니다 크루즈 게시판에 작성될 내용입니다  </textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="container fixed-bottom d-flex justify-content-end" style="padding-bottom: 20px;">
+        <img src="/img/plusbotton.png" style="width: 60px; height: 60px" data-bs-toggle="modal"
+             data-bs-target="#staticBackdrop"/>
+    </div>
+
+    <div th:replace="~{moim/board-form :: form}"></div>
+</div>
+</body>
+</html>
