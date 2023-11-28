@@ -9,7 +9,7 @@ public interface ReviewDao {
 
 
 
-    @Insert("insert into \"HONG\".\"TEST\" values(TEST_SEQ.NEXTVAL, null, #{categoryno}, #{title}, #{content},#{filename1,jdbcType=VARCHAR},#{filename2,jdbcType=VARCHAR},#{filename3,jdbcType=VARCHAR}, sysdate, null)")
+    @Insert("insert into \"HONG\".\"TEST\" values(TEST_SEQ.NEXTVAL, #{memberid}, #{categoryno}, #{title}, #{content},#{filename1,jdbcType=VARCHAR},#{filename2,jdbcType=VARCHAR},#{filename3,jdbcType=VARCHAR}, sysdate, null)")
     void insert(Review r);
 
     @Select("select TEST_SEQ.NEXTVAL from dual")

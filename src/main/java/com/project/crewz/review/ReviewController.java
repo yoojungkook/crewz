@@ -65,6 +65,8 @@ public class ReviewController {
             }
         }
 
+        r.setMemberid("testid"); // 테스트
+
         r.setFilename1(fileNames[0]);
         r.setFilename2(fileNames[1]);
         r.setFilename3(fileNames[2]);
@@ -89,7 +91,8 @@ public class ReviewController {
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute("r") Review r, @RequestParam("photo1") MultipartFile photo1,
+    public String edit(@ModelAttribute("r") Review r,
+                       @RequestParam("photo1") MultipartFile photo1,
                        @RequestParam("photo2") MultipartFile photo2,
                        @RequestParam("photo3") MultipartFile photo3) throws Exception {
 
@@ -109,6 +112,9 @@ public class ReviewController {
                 file.transferTo(new File(storeDir, fileNames[i]));
             }
         }
+
+
+
         r.setFilename1(fileNames[0]);
         r.setFilename2(fileNames[1]);
         r.setFilename3(fileNames[2]);

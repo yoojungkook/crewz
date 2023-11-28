@@ -73,18 +73,17 @@
                 <header class="mb-4">
                     <div class="d-flex align-items-start">
                         <!-- 프사 -->
-                        <img class="rounded-circle" src="/img/풍경1.jpg" alt="Profile picture"
-                             style="width: 50px; height: 50px;">
+                        <img class="rounded-circle" src="/img/emptyprofile.png" alt="Profile picture" style="width: 50px; height: 50px;">
                         <!-- 작성자 -->
 <!--                        name="writer" value="${sessionScope.loginId }"-->
-                        <h4 class="fw-bolder mb-1 ml-3" style="margin-top: 10px; margin-left:10px">[[${list.memberid}]] testid</h4>
+                        <h4 class="fw-bolder mb-1 ml-3" style="margin-top: 10px; margin-left:10px">[[${list.memberid}]]</h4>
                     </div>
                     <!-- title-->
                     <h1 class="fw-bolder mb-1" style="margin-top: 10px;">[[${list.title}]]</h1>
                     <!-- date -->
                     <div class="text-muted fst-italic mb-2">[[${list.mdate}]]</div>
                     <!-- category -->
-                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">[[${list.categoryno}]]</a>
+                    <a class="badge bg-secondary text-decoration-none link-light">[[${list.categoryno}]]</a>
                 </header>
 
 
@@ -118,29 +117,24 @@
 
                         <form class="mb-4 d-flex justify-content-between align-items-stretch">
                             <textarea name="content" class="form-control" rows="3" placeholder="Join the discussion and leave a comment!" style="width: 85%; resize:none;"></textarea>
-                            <button type="submit" class="btn btn-primary" style="width: 14%; background-color: #babbbc; border-color: #babbbc;">등록</button>
+                            <button type="submit" class="btn btn-comment" style="width: 14%; background-color: #babbbc; border-color: #babbbc;">등록</button>
                         </form>
 
                         <div th:each="comment : ${comments}">
-<!--                            <div class="d-flex mb-4">-->
                             <div class="d-flex mb-4" data-comment-id="[[${comment.id}]]">
                                 <div class="flex-shrink-0">
                                     <img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."/>
                                 </div>
                                 <div class="ms-3">
                                     <div class="fw-bold">[[${comment.memberid}]]
-                                        <button class="btn btn-sm btn-outline-secondary edit-comment-btn" style="padding: 0.1px 0.1px; margin-top: -5px; border: none; " >
-                                            <img src="/img/edit_button.png" alt="delete" width="15" height="15">
+                                        <button class="btn btn-sm btn-outline-secondary edit-comment-btn" style="padding: 0.1px 0.1px; margin-top: -5px; border: none; ">
+                                            <img src="/img/edit_button.png" alt="edit" width="15" height="15">
                                         </button>
-                                        <button class="btn btn-sm btn-outline-danger delete-comment-btn" style="padding: 0.1px 0.1px; margin-top: -5.1px; border: none; " >
+                                        <button class="btn btn-sm btn-outline-danger delete-comment-btn" style="padding: 0.1px 0.1px; margin-top: -5.1px; border: none; ">
                                             <img src="/img/delete_button.png" alt="delete" width="15" height="15">
                                         </button>
                                     </div>
                                     <div class="comment-content">[[${comment.content}]]</div>
-                                    <div class="edit-field" style="display: none;">
-                                        <input type="text" class="edit-input">
-                                        <button class="edit-submit">수정 완료</button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -215,8 +209,9 @@ $(document).ready(function() {
 
 // 글삭제기능
 $(document).ready(function() {
-    function confirmDelete(no) {
-        if (confirm('삭제하시겠습니까?')) {
+
+     function confirmDelete(no) {
+       if (confirm('삭제하시겠습니까?')) {
             location.href = '/review/del?no=' + no;
         }
     }
@@ -226,6 +221,7 @@ $(document).ready(function() {
         confirmDelete(no);
     });
 });
+
 
 
 // 수정폼 사진 삭제기능
@@ -254,9 +250,6 @@ $(document).ready(function () {
         });
     });
 });
-
-
-
 
 
 
@@ -297,6 +290,28 @@ $(document).ready(function() {
     });
 });
 
+// 댓글 추가
+$(document).ready(function() {
+    $('.btn-comment').click(function(event) {
+        event.preventDefault();
+
+        var reviewno = $(this).closest('.card.bg-light').data('reviewno');
+        var content = $(this).prev('textarea').val();
+
+        $.ajax({
+            url: '/comment/add',
+            type: 'POST',
+            data: {
+                reviewno: reviewno,
+                content: content
+            },
+            success: function() {
+                // 댓글이 성공적으로 추가되면 페이지를 새로고침합니다.
+                location.reload();
+            }
+        });
+    });
+});
 
 // 댓글 불러오기
 $(document).ready(function() {
@@ -346,6 +361,7 @@ $(document).ready(function() {
 <!--                                     '        <div class="comment-content">'+ comment.content + '</div>' +-->
 <!--                                     '    </div>';-->
 
+
                     $cardBody.append(commentHtml);
                 });
                 setupCommentEvents();  // 댓글 요소에 이벤트 설정
@@ -363,7 +379,6 @@ $(document).ready(function() {
             var currentContent = $commentContent.text();
 
             // 댓글 내용을 수정할 수 있는 입력 필드와 수정 완료 버튼 표시
-<!--            var editInputHtml = '<input type="text" class="form-control edit-input" value="' + currentContent + '">' +-->
             var editInputHtml = '<textarea class="form-control edit-input" style="width:500px; height: 70px;" >' + currentContent + '</textarea>' +
                                 '<button class="btn btn-primary edit-submit">수정 완료</button>' +
                                 '<button class="btn btn-secondary edit-cancel">취소</button>';
