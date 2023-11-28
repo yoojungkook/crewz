@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
+    <link href="/css/review/styles.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/cat/cat.css">
+    <link rel="stylesheet" type="text/css" href="/css/cat/searchbox.css">
+    <style>
+        .rounded {
+            margin: 5px
+        }
+
+        .btn btn-primary {
+            --bs-btn-color: #f8f9fa;
+        }
+
+        .scrollable {
+            height: 600px;
+            overflow-y: auto;
+        }
+
+        textarea {
+            height: 90px;
+        }
+
+        #wrp img {
+            width: 200px;
+            height: 100%;
+        }
+    </style>
+
+
+
+</head>
+<body>
+
+
+<div class="container mt-5">
+    <div th:each="list : ${list}">
+    <div class="row">
+        <div class="col-lg-8">
+            <article>
+
+                <header class="mb-4">
+                    <div class="d-flex align-items-start">
+                        <!-- 프사 -->
+                        <img class="rounded-circle" src="/img/풍경1.jpg" alt="Profile picture"
+                             style="width: 50px; height: 50px;">
+                        <!-- 작성자 -->
+                        <h4 class="fw-bolder mb-1 ml-3" style="margin-top: 10px; margin-left:10px">[[${list.memberid}]] testid</h4>
+
+<!--                        <div th:if="${session.loginId == b.id}"> </div> 아이디같을때만 보이게끔 -->
+                        <button   class="editButton btn btn-primary"  style="margin-left: 10px;" data-bs-toggle="modal" data-bs-target="#testrevieweditform" th:data-no="${list.no}">글수정</button>
+                        <button id="del" class="btn btn-danger" style="margin-left: 10px;" th:data-no="${list.no}" onclick="confirmDelete('${list.no}')">글삭제</button>
+
+
+                    </div>
+                    <!-- title-->
+                    <h1 class="fw-bolder mb-1" style="margin-top: 10px;">[[${list.title}]]</h1>
+                    <!-- date -->
+                    <div class="text-muted fst-italic mb-2">[[${list.mdate}]]</div>
+                    <!-- category -->
+                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">[[${list.categoryno}]]</a>
+
+                </header>
+
+                <section class="mb-5">
+                    <p class="fs-5 mb-4">[[${list.content}]]</p>
+
+                    <div id="wrp" style="overflow-x: auto; white-space:nowrap">
+                        <img th:src="@{/images/{no}/{filename}(no=${list.no}, filename=${list.filename1})}" class="rounded" alt="대체 텍스트" width="100%"/>
+                        <img th:src="@{/images/{no}/{filename}(no=${list.no}, filename=${list.filename2})}" class="rounded" alt="대체 텍스트" width="100%"/>
+                        <img th:src="@{/images/{no}/{filename}(no=${list.no}, filename=${list.filename3})}" class="rounded" alt="대체 텍스트" width="100%"/>
+                    </div>
+                </section>
+            </article>
+
+            <!-- Comments section-->
+            <section class="mb-5">
+                <div class="card bg-light">
+                    <div class="card-body">
+
+                        <form class="mb-4 d-flex justify-content-between align-items-stretch">
+                                <textarea class="form-control" rows="3"
+                                          placeholder="Join the discussion and leave a comment!"
+                                          style="width: 85%; resize:none;"></textarea>
+                            <button class="btn btn-primary"
+                                    style="width: 14%; background-color: #babbbc; border-color: #babbbc;">등록
+                            </button>
+                        </form>
+                        <div class="d-flex mb-4">
+                            <!-- Parent comment-->
+                            <div class="flex-shrink-0">
+                                <img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."/></div>
+                            <div class="ms-3">
+                                <div class="fw-bold">Commenter Name1</div>
+                                너무 재밌었어요. 너무 재밌었어요. 너무 재밌었어요. 너무 재밌었어요.
+                            </div>
+                        </div>
+                        <!-- Single comment-->
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" />
+                            </div>
+                            <div class="ms-3">
+                                <div class="fw-bold">Commenter Name3</div>
+                                When I look at the universe and all the ways the universe wants to kill us, I find it
+                                hard to reconcile that with statements of beneficence.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="container fixed-bottom d-flex justify-content-end" style="padding-bottom: 20px;">
+    <img src="/img/plusbotton.png" style="width: 60px; height: 60px" data-bs-toggle="modal" data-bs-target="#testreviewform"/>
+</div>
+<div th:replace="~{test/reviewtest-form :: form}"></div>
+<div th:replace="~{test/reviewtestedit-form :: form}"></div>
+<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/jquery-3.7.1.js"></script>
+
+<script src="/js/review/scripts.js"></script>
+<script th:inline="javascript">
+$(document).ready(function() {
+    function confirmDelete(no) {
+        if (confirm('삭제하시겠습니까?')) {
+            location.href = '/test/del?no=' + no;
+        }
+    }
+
+    $('.btn-danger').click(function() {
+        var no = $(this).data('no');  // 게시글 번호를 가져옴
+        confirmDelete(no);
+    });
+});
+
+$(document).ready(function() {
+    $('.editButton').click(function() {
+        var no = $(this).data('no');  // 게시글 번호를 가져옴
+        $.ajax({
+            url: '/test/edit?no=' + no,  // 서버에서 해당 글의 데이터를 가져오는 URL
+            type: 'GET',
+            success: function(data) {
+                // 모달 창의 각 필드에 데이터를 채움
+                $('#no').val(data.no);
+                $('select[name="categoryno"]').val(data.categoryno);
+                $('input[name="title"]').val(data.title);
+                $('input[name="content"]').val(data.content);
+
+  $('#photo1_filename').text(data.filename1);
+  $('#photo2_filename').text(data.filename2);
+  $('#photo3_filename').text(data.filename3);
+            }
+        });
+    });
+});
+
+
+
+</script>
+
+</body>
+</html>
+
