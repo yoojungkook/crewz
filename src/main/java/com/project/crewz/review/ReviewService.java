@@ -3,8 +3,10 @@ package com.project.crewz.review;
 
 import java.util.ArrayList;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class ReviewService {
@@ -32,4 +34,12 @@ public class ReviewService {
     }
 
 
+
+//    public void updateLikeCount(int no, int likecount) {
+//        dao.updateLikeCount(no, likecount);
+//    }
+
 }
+
+
+

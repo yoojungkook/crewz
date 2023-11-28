@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
-<form action="/test/add" method="post" enctype="multipart/form-data">
-<div th:fragment="form" class="modal fade" id="testreviewform" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+<form action="/review/edit" method="post" enctype="multipart/form-data">
+
+<div th:fragment="form" class="modal fade" id="testrevieweditform" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-8 fw-bold" id="staticBackdropLabel">후기 작성</h1>
+        <h1 class="modal-title fs-8 fw-bold" id="staticBackdropLabel">후기 글 수정</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
+      <input type="hidden" id="no" name="no" th:value="${no}">
 
       <div class="modal-body">
 
@@ -25,40 +29,53 @@
         </div><br>
 
         <span class="fw-bold">&emsp;제목</span><br>
-        <input class="review-input form-control" type="text" name="title" placeholder="Default input"
-               aria-label="default input example"><br>
+        <input class="review-input form-control" type="text" name="title"  placeholder="Default input" aria-label="default input example"><br>
 
         <span class="fw-bold">&emsp;내용</span><br>
-        <input class="review-input form-control" style="height: 200px;" type="text" name="content" placeholder="Default input"
-               aria-label="default input example"><br>
+        <input class="review-input form-control" style="height: 200px;" type="text" name="content"  placeholder="Default input" aria-label="default input example"><br>
 
-        <span class="fw-bold">&emsp;사진</span><br>
+
+        <span class="fw-bold">&emsp;사진1 : </span><span id="photo1_filename"></span>
+        <button id="deletePhoto1" class="btn btn-danger btn-sm delete-photo" data-photo-num="1">삭제</button>
         <div class="review-input input-group mb-3">
           <label class="input-group-text" for="inputGroupFile01">올리기</label>
           <input type="file" class="form-control" id="inputGroupFile01" name="photo1">
         </div>
 
-        <span class="fw-bold">&emsp;사진2</span><br>
+
+        <span class="fw-bold">&emsp;사진2 : </span><span id="photo2_filename"></span>
+        <button id="deletePhoto2" class="btn btn-danger btn-sm delete-photo" data-photo-num="2">삭제</button>
         <div class="review-input input-group mb-3">
           <label class="input-group-text" for="inputGroupFile01">올리기</label>
           <input type="file" class="form-control" id="inputGroupFile02" name="photo2">
         </div>
 
-        <span class="fw-bold">&emsp;사진3</span><br>
+        <span class="fw-bold">&emsp;사진3 : </span><span id="photo3_filename"></span>
+        <button id="deletePhoto3" class="btn btn-danger btn-sm delete-photo" data-photo-num="3">삭제</button>
         <div class="review-input input-group mb-3">
           <label class="input-group-text" for="inputGroupFile01">올리기</label>
           <input type="file" class="form-control" id="inputGroupFile03" name="photo3">
         </div>
+
       </div>
+
+
 
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-        <button type="submit" class="btn btn-primary" value="작성">작성완료</button>
+        <button type="submit" class="btn btn-primary" value="작성">수정완료</button>
       </div>
     </div>
   </div>
 </div>
 </form>
+<script src="/jquery-3.7.1.js"></script>
+<script src="/js/review/scripts.js"></script>
+<script th:inline="javascript">
+
+
+</script>
 </body>
+</script>
 </html>
