@@ -2,10 +2,11 @@
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<form action="/test/edit" method="post" enctype="multipart/form-data">
 
-<div th:fragment="form" class="modal fade" id="testrevieweditform" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<form action="/review/edit" method="post" enctype="multipart/form-data">
+
+<div th:fragment="form" class="modal fade" id="testrevieweditform" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
@@ -13,13 +14,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <input type="hidden" id="no" name="no">
+      <input type="hidden" id="no" name="no" th:value="${no}">
 
       <div class="modal-body">
 
         <div style="display: flex; align-items: center;">
           <span class="fw-bold">&emsp;카테고리</span>
-          <select class="review-input form-control" style="margin-left: 10px; width: 150px;" name="categoryno"   >
+          <select class="review-input form-control" style="margin-left: 10px; width: 150px;" name="categoryno">
             <option selected>카테고리를 선택하세요</option>
             <option value="카테고리1">카테고리1</option>
             <option value="카테고리2">카테고리2</option>
@@ -28,34 +29,36 @@
         </div><br>
 
         <span class="fw-bold">&emsp;제목</span><br>
-        <input class="review-input form-control" type="text" name="title"  placeholder="Default input"
-               aria-label="default input example" ><br>
+        <input class="review-input form-control" type="text" name="title"  placeholder="Default input" aria-label="default input example"><br>
 
         <span class="fw-bold">&emsp;내용</span><br>
-        <input class="review-input form-control" style="height: 200px;" type="text" name="content"  placeholder="Default input"
-               aria-label="default input example" ><br>
+        <input class="review-input form-control" style="height: 200px;" type="text" name="content"  placeholder="Default input" aria-label="default input example"><br>
 
 
-
-        <span class="fw-bold">&emsp;사진: </span><span id="photo1_filename"></span><br>
+        <span class="fw-bold">&emsp;사진1 : </span><span id="photo1_filename"></span>
+        <button id="deletePhoto1" class="btn btn-danger btn-sm delete-photo" data-photo-num="1">삭제</button>
         <div class="review-input input-group mb-3">
           <label class="input-group-text" for="inputGroupFile01">올리기</label>
           <input type="file" class="form-control" id="inputGroupFile01" name="photo1">
         </div>
 
-        <span class="fw-bold">&emsp;사진: </span><span id="photo2_filename"></span><br>
+
+        <span class="fw-bold">&emsp;사진2 : </span><span id="photo2_filename"></span>
+        <button id="deletePhoto2" class="btn btn-danger btn-sm delete-photo" data-photo-num="2">삭제</button>
         <div class="review-input input-group mb-3">
           <label class="input-group-text" for="inputGroupFile01">올리기</label>
           <input type="file" class="form-control" id="inputGroupFile02" name="photo2">
         </div>
 
-        <span class="fw-bold">&emsp;사진: </span><span id="photo3_filename"></span><br>
+        <span class="fw-bold">&emsp;사진3 : </span><span id="photo3_filename"></span>
+        <button id="deletePhoto3" class="btn btn-danger btn-sm delete-photo" data-photo-num="3">삭제</button>
         <div class="review-input input-group mb-3">
           <label class="input-group-text" for="inputGroupFile01">올리기</label>
           <input type="file" class="form-control" id="inputGroupFile03" name="photo3">
         </div>
 
       </div>
+
 
 
 
@@ -74,4 +77,5 @@
 
 </script>
 </body>
+</script>
 </html>

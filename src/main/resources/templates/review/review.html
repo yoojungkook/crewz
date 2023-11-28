@@ -6,8 +6,10 @@
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="/css/review/styles.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/css/cat/cat.css">
-    <link rel="stylesheet" type="text/css" href="/css/cat/searchbox.css">
+
+
+<!--    <link rel="stylesheet" type="text/css" href="/css/cat/cat.css">-->
+<!--    <link rel="stylesheet" type="text/css" href="/css/cat/searchbox.css">-->
     <style>
         .rounded {
             margin: 5px
@@ -30,12 +32,37 @@
             width: 200px;
             height: 100%;
         }
+
+        .heartBtn {
+            background: none;
+            border: none;
+            margin-bottom: 10px;
+            margin-top: -35px;
+            font-size: 30px;
+            color: red;
+        }
+
+        .edit-input {
+            width:500px;
+            height: 70px;
+            resize: none;
+        }
+
+
+        .edit-submit, .edit-cancel {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+
     </style>
 
 
 
 </head>
-<body>
+<body >
+
+
 
 
 <div class="container mt-5">
@@ -43,111 +70,127 @@
     <div class="row">
         <div class="col-lg-8">
             <article>
-
                 <header class="mb-4">
                     <div class="d-flex align-items-start">
                         <!-- 프사 -->
-                        <img class="rounded-circle" src="/img/풍경1.jpg" alt="Profile picture"
-                             style="width: 50px; height: 50px;">
+                        <img class="rounded-circle" src="/img/emptyprofile.png" alt="Profile picture" style="width: 50px; height: 50px;">
                         <!-- 작성자 -->
-                        <h4 class="fw-bolder mb-1 ml-3" style="margin-top: 10px; margin-left:10px">[[${list.memberid}]] testid</h4>
-
-<!--                        <div th:if="${session.loginId == b.id}"> </div> 아이디같을때만 보이게끔 -->
-                        <button   class="editButton btn btn-primary"  style="margin-left: 10px;" data-bs-toggle="modal" data-bs-target="#testrevieweditform" th:data-no="${list.no}">글수정</button>
-                        <button id="del" class="btn btn-danger" style="margin-left: 10px;" th:data-no="${list.no}" onclick="confirmDelete('${list.no}')">글삭제</button>
-
-
+<!--                        name="writer" value="${sessionScope.loginId }"-->
+                        <h4 class="fw-bolder mb-1 ml-3" style="margin-top: 10px; margin-left:10px">[[${list.memberid}]]</h4>
                     </div>
                     <!-- title-->
                     <h1 class="fw-bolder mb-1" style="margin-top: 10px;">[[${list.title}]]</h1>
                     <!-- date -->
                     <div class="text-muted fst-italic mb-2">[[${list.mdate}]]</div>
                     <!-- category -->
-                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">[[${list.categoryno}]]</a>
-
+                    <a class="badge bg-secondary text-decoration-none link-light">[[${list.categoryno}]]</a>
                 </header>
 
-                <section class="mb-5">
+
+                <section class="mb-5" >
                     <p class="fs-5 mb-4">[[${list.content}]]</p>
 
                     <div id="wrp" style="overflow-x: auto; white-space:nowrap">
-                        <img th:src="@{/images/{no}/{filename}(no=${list.no}, filename=${list.filename1})}" class="rounded" alt="대체 텍스트" width="100%"/>
-                        <img th:src="@{/images/{no}/{filename}(no=${list.no}, filename=${list.filename2})}" class="rounded" alt="대체 텍스트" width="100%"/>
-                        <img th:src="@{/images/{no}/{filename}(no=${list.no}, filename=${list.filename3})}" class="rounded" alt="대체 텍스트" width="100%"/>
+
+                        <img th:src="@{/images/{no}/{filename}(no=${list.no}, filename=${list.filename1})}" class="rounded" alt="대체 텍스트" width="100%"
+                        th:onerror="this.onerror=null; this.src='/img/empty.png'; this.dataset.bsToggle='tooltip'; this.dataset.bsPlacement='bottom'; this.title='이미지를 업로드해주세요';"
+                        data-bs-delay="0"/>
+
+                        <img th:src="@{/images/{no}/{filename}(no=${list.no}, filename=${list.filename2})}" class="rounded" alt="대체 텍스트" width="100%"
+                        th:onerror="this.onerror=null; this.src='/img/empty.png'; this.dataset.bsToggle='tooltip'; this.dataset.bsPlacement='bottom'; this.title='이미지를 업로드해주세요';"
+                        data-bs-delay="0"/>
+
+                        <img th:src="@{/images/{no}/{filename}(no=${list.no}, filename=${list.filename3})}" class="rounded" alt="대체 텍스트" width="100%"
+                        th:onerror="this.onerror=null; this.src='/img/empty.png'; this.dataset.bsToggle='tooltip'; this.dataset.bsPlacement='bottom'; this.title='이미지를 업로드해주세요';"
+                        data-bs-delay="0"/>
+
                     </div>
                 </section>
             </article>
 
+
             <!-- Comments section-->
-            <section class="mb-5">
-                <div class="card bg-light">
+            <section class="mb-5" >
+                <div class="card bg-light" th:attr="data-reviewno=${list.no}"><p th:text="${reviewno}"></p>
+
                     <div class="card-body">
 
                         <form class="mb-4 d-flex justify-content-between align-items-stretch">
-                                <textarea class="form-control" rows="3"
-                                          placeholder="Join the discussion and leave a comment!"
-                                          style="width: 85%; resize:none;"></textarea>
-                            <button class="btn btn-primary"
-                                    style="width: 14%; background-color: #babbbc; border-color: #babbbc;">등록
-                            </button>
+                            <textarea name="content" class="form-control" rows="3" placeholder="Join the discussion and leave a comment!" style="width: 85%; resize:none;"></textarea>
+                            <button type="submit" class="btn btn-comment" style="width: 14%; background-color: #babbbc; border-color: #babbbc;">등록</button>
                         </form>
-                        <div class="d-flex mb-4">
-                            <!-- Parent comment-->
-                            <div class="flex-shrink-0">
-                                <img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."/></div>
-                            <div class="ms-3">
-                                <div class="fw-bold">Commenter Name1</div>
-                                너무 재밌었어요. 너무 재밌었어요. 너무 재밌었어요. 너무 재밌었어요.
+
+                        <div th:each="comment : ${comments}">
+                            <div class="d-flex mb-4" data-comment-id="[[${comment.id}]]">
+                                <div class="flex-shrink-0">
+                                    <img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."/>
+                                </div>
+                                <div class="ms-3">
+                                    <div class="fw-bold">[[${comment.memberid}]]
+                                        <button class="btn btn-sm btn-outline-secondary edit-comment-btn" style="padding: 0.1px 0.1px; margin-top: -5px; border: none; ">
+                                            <img src="/img/edit_button.png" alt="edit" width="15" height="15">
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger delete-comment-btn" style="padding: 0.1px 0.1px; margin-top: -5.1px; border: none; ">
+                                            <img src="/img/delete_button.png" alt="delete" width="15" height="15">
+                                        </button>
+                                    </div>
+                                    <div class="comment-content">[[${comment.content}]]</div>
+                                </div>
                             </div>
                         </div>
-                        <!-- Single comment-->
-                        <div class="d-flex">
-                            <div class="flex-shrink-0">
-                                <img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" />
-                            </div>
-                            <div class="ms-3">
-                                <div class="fw-bold">Commenter Name3</div>
-                                When I look at the universe and all the ways the universe wants to kill us, I find it
-                                hard to reconcile that with statements of beneficence.
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </section>
 
+
+            <div class="text-center">
+            <!--                        <div th:if="${session.loginId == b.id}"> </div> 아이디같을때만 보이게끔 -->
+            <button   class="editButton btn btn-primary"  style="margin-left: 10px; margin-top: -50px;" data-bs-toggle="modal" data-bs-target="#testrevieweditform" th:data-no="${list.no}">글수정</button>
+            <button id="del" class="btn btn-danger" style="margin-left: 10px; margin-top: -50px;" th:data-no="${list.no}" onclick="confirmDelete('${list.no}')">글삭제</button>
+            </div>
+
+            <br/>
+            <br/>
         </div>
     </div>
 </div>
+
+
+</div>
+
+
+<!-- 이미지 클릭했을때 크게보는 모달창-->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img id="modalImage" src="" class="img-fluid rounded mx-auto d-block" alt="Selected Image">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container fixed-bottom d-flex justify-content-end" style="padding-bottom: 20px;">
     <img src="/img/plusbotton.png" style="width: 60px; height: 60px" data-bs-toggle="modal" data-bs-target="#testreviewform"/>
 </div>
-<div th:replace="~{test/reviewtest-form :: form}"></div>
-<div th:replace="~{test/reviewtestedit-form :: form}"></div>
+<div th:replace="~{review/reviewadd-form :: form}"></div>
+<div th:replace="~{review/reviewedit-form :: form}"></div>
 <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/jquery-3.7.1.js"></script>
 
 <script src="/js/review/scripts.js"></script>
 <script th:inline="javascript">
-$(document).ready(function() {
-    function confirmDelete(no) {
-        if (confirm('삭제하시겠습니까?')) {
-            location.href = '/test/del?no=' + no;
-        }
-    }
 
-    $('.btn-danger').click(function() {
-        var no = $(this).data('no');  // 게시글 번호를 가져옴
-        confirmDelete(no);
-    });
-});
-
+// 게시글 불러오기
 $(document).ready(function() {
     $('.editButton').click(function() {
         var no = $(this).data('no');  // 게시글 번호를 가져옴
         $.ajax({
-            url: '/test/edit?no=' + no,  // 서버에서 해당 글의 데이터를 가져오는 URL
+            url: '/review/edit?no=' + no,  // 서버에서 해당 글의 데이터를 가져오는 URL
             type: 'GET',
             success: function(data) {
                 // 모달 창의 각 필드에 데이터를 채움
@@ -163,6 +206,234 @@ $(document).ready(function() {
         });
     });
 });
+
+// 글삭제기능
+$(document).ready(function() {
+
+     function confirmDelete(no) {
+       if (confirm('삭제하시겠습니까?')) {
+            location.href = '/review/del?no=' + no;
+        }
+    }
+
+    $('.btn-danger').click(function() {
+        var no = $(this).data('no');  // 게시글 번호를 가져옴
+        confirmDelete(no);
+    });
+});
+
+
+
+// 수정폼 사진 삭제기능
+$(document).ready(function () {
+
+    $(".delete-photo").click(function () {
+        var photoNum = $(this).data("photo-num");
+
+        var no = $("#no").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/review/delphoto",
+            data: {
+                no: no,
+                photoNum: photoNum
+            },
+            success: function (response) {
+                console.log(response);
+                $("#photo" + photoNum + "_filename").text("");
+            },
+            error: function (error) {
+                console.error(error);
+                alert("사진 삭제에 실패했습니다.");
+            }
+        });
+    });
+});
+
+
+
+$(document).ready(function() {
+    $("#wrp img").on("load", function() {
+        var src = $(this).attr("src");
+
+        if (src === '/img/empty.png') {// 툴팁을 활성화
+
+            $(this).attr("data-bs-toggle", "tooltip");
+            $(this).attr("data-bs-placement", "top");
+            $(this).attr("title", "이미지를 업로드해주세요");
+        } else {// src 속성 값이 대체 이미지가 아닐 경우 툴팁을 비활성화
+
+            $(this).removeAttr("data-bs-toggle");
+            $(this).removeAttr("data-bs-placement");
+            $(this).removeAttr("title");
+        }
+    });
+
+    // Bootstrap 툴팁 활성화
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});
+
+// 이미지 클릭했을때 크게보는 모달창
+$(document).ready(function() {
+    $("#wrp img").click(function() {
+        var src = $(this).attr("src");
+
+        if (src === '/img/empty.png') {return;}
+
+        $("#modalImage").attr("src", src);
+
+        $("#imageModal").modal("show");
+    });
+});
+
+// 댓글 추가
+$(document).ready(function() {
+    $('.btn-comment').click(function(event) {
+        event.preventDefault();
+
+        var reviewno = $(this).closest('.card.bg-light').data('reviewno');
+        var content = $(this).prev('textarea').val();
+
+        $.ajax({
+            url: '/comment/add',
+            type: 'POST',
+            data: {
+                reviewno: reviewno,
+                content: content
+            },
+            success: function() {
+                // 댓글이 성공적으로 추가되면 페이지를 새로고침합니다.
+                location.reload();
+            }
+        });
+    });
+});
+
+// 댓글 불러오기
+$(document).ready(function() {
+
+    $('.card.bg-light').each(function() {
+        var reviewno = $(this).data('reviewno');
+        var $cardBody = $(this).find('.card-body');
+
+        $.ajax({
+            url: '/comment/comments',
+            type: 'GET',
+            data: {
+                reviewno: reviewno
+            },
+            success: function(comments) {
+                comments.forEach(function(comment) {
+                    var commentHtml = '<div class="d-flex mb-4" data-comment-no="' + comment.no + '">' +
+                                      '    <div class="flex-shrink-0">' +
+                                      '        <img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."/></div>' +
+                                      '    <div class="ms-3">' +
+                                      '        <div class="fw-bold">' + comment.memberid +
+                                      '            <button class="btn btn-sm btn-outline-secondary edit-comment-btn" style="padding: 0.1px 0.1px; margin-top: -5px; border: none; " >' +
+                                      '                <img src="/img/edit_button.png" alt="edit" width="15" height="15">' +
+                                      '            </button>' +
+                                      '            <button class="btn btn-sm btn-outline-danger delete-comment-btn" style="padding: 0.1px 0.1px; margin-top: -5.1px; border: none; ">' +
+                                      '                <img src="/img/delete_button.png" alt="delete" width="15" height="15">' +
+                                      '            </button>' +
+                                      '    </div>' +
+                                      '        <div class="comment-content">'+ comment.content + '</div>' +
+                                      '</div>';
+
+<!--                    var commentHtml = '<div class="d-flex mb-4" data-comment-no="' + comment.no + '">' +-->
+<!--                                      '    <div class="flex-shrink-0">' +-->
+<!--                                      '        <img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."/></div>' +-->
+<!--                                      '    <div class="ms-3">' +-->
+<!--                                      '        <div class="fw-bold">' + comment.memberid;-->
+<!--                                      // 로그인한 사용자의 아이디와 댓글 작성자의 아이디가 같으면 수정 및 삭제 버튼을 추가-->
+<!--                                      if (loggedInUserId === comment.memberid) {-->
+<!--                                          commentHtml += '            <button class="btn btn-sm btn-outline-secondary edit-comment-btn" style="padding: 0.1px 0.1px; margin-top: -5px; border: none; " >' +-->
+<!--                                                         '                <img src="/img/edit_button.png" alt="edit" width="15" height="15">' +-->
+<!--                                                         '            </button>' +-->
+<!--                                                         '            <button class="btn btn-sm btn-outline-danger delete-comment-btn" style="padding: 0.1px 0.1px; margin-top: -5.1px; border: none; ">' +-->
+<!--                                                         '                <img src="/img/delete_button.png" alt="delete" width="15" height="15">' +-->
+<!--                                                         '            </button>';-->
+<!--                                      }-->
+<!--                    commentHtml +=   '    </div>' +-->
+<!--                                     '        <div class="comment-content">'+ comment.content + '</div>' +-->
+<!--                                     '    </div>';-->
+
+
+                    $cardBody.append(commentHtml);
+                });
+                setupCommentEvents();  // 댓글 요소에 이벤트 설정
+            }
+        });
+    });
+
+    // 댓글 요소에 이벤트 설정하는 함수
+    function setupCommentEvents() {
+        // 댓글 수정 버튼 클릭 이벤트
+        $('.edit-comment-btn').off('click').on('click', function() {
+            var $commentDiv = $(this).closest('.d-flex.mb-4');
+            var commentNo = $commentDiv.data('comment-no');
+            var $commentContent = $commentDiv.find('.comment-content');
+            var currentContent = $commentContent.text();
+
+            // 댓글 내용을 수정할 수 있는 입력 필드와 수정 완료 버튼 표시
+            var editInputHtml = '<textarea class="form-control edit-input" style="width:500px; height: 70px;" >' + currentContent + '</textarea>' +
+                                '<button class="btn btn-primary edit-submit">수정 완료</button>' +
+                                '<button class="btn btn-secondary edit-cancel">취소</button>';
+            $commentContent.html(editInputHtml);
+
+            $commentContent.find('.edit-submit').click(function() {
+                var newContent = $commentContent.find('.edit-input').val();
+
+                    // 변경된 내용을 서버에 저장
+                    $.ajax({
+                        url: '/comment/edit',
+                        type: 'POST',
+                            data: {
+                            no: commentNo,
+                        content: newContent
+                        },
+                        success: function() {
+                            $commentContent.text(newContent);  // 입력 필드를 새로운 댓글 내용으로 교체
+                        },
+                        error: function() {
+                            alert('댓글 수정에 실패했습니다.');
+                        }
+                    });
+                });
+                // '취소' 버튼 클릭 이벤트
+                $commentContent.find('.edit-cancel').click(function() {
+                    $commentContent.text(currentContent);  // 입력 필드와 버튼을 원래의 댓글 내용으로 교체
+                });
+
+            });
+
+        // 댓글 삭제 버튼 클릭 이벤트
+        $('.delete-comment-btn').off('click').on('click', function() {
+            var $commentDiv = $(this).closest('.d-flex.mb-4');
+            var commentNo = $commentDiv.data('comment-no');
+
+                // 사용자에게 댓글 삭제 확인 메시지 표시
+                if (confirm('댓글을 삭제하시겠습니까?')) {
+                    $.ajax({
+                        url: '/comment/delete?no=' + commentNo,
+                        type: 'DELETE',
+                        success: function() {
+                            $commentDiv.remove();
+                        },
+                        error: function() {
+                            alert('댓글 삭제에 실패했습니다.');
+                        }
+                    });
+                }
+            });
+
+
+    }
+});
+
 
 
 
