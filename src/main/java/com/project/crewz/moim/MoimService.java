@@ -31,6 +31,7 @@ public class MoimService {
 	
 	//모임 수정
 	public void editMoim(MoimDto dto) {
+		//System.out.println("serviced에서 : " + dto);
 		dao.update(new Moim(dto.getNo(),dto.getCatno(),dto.getMemberid(),dto.getInfo(),dto.getTitle(),dto.getContent(),dto.getPhoto(),dto.getPhoto2(),dto.getPhoto3(),new Date(0,0,0),dto.getLove()));
 	}
 	
