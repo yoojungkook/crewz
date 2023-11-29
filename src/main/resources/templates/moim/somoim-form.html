@@ -10,7 +10,7 @@
                     <button type="button"x class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="/somoim" method="post" enctype="multipart/form-data">
-				<input type="hidden" value="${dto.getNo()}" name="moimno">
+				<input type="hidden" th:value="${dto.no}" name="moimno">
                 <div class="modal-body">
 					
                     <span class="fw-bold">&emsp;썸네일 선택</span><br>
@@ -22,22 +22,22 @@
                     <span class="fw-bold">&emsp;소모임이름</span><br>
                     <input name="title" class="somoim-inp	ut form-control" type="text" placeholder="Default input"
                            aria-label="default input example"><br>
-                    <!--<span class="fw-bold">&emsp;소모임소개</span><br>
-                    <input class="somoim-input form-control" type="text" placeholder="Default input"
-                           aria-label="default input example"><br>-->
-                    <span class="fw-bold">&emsp;정모일</span><br>
+                    <span class="fw-bold">&emsp;소모임소개</span><br>
+                    <input name="content" class="somoim-input form-control" type="text" placeholder="Default input"
+                           aria-label="default input example"><br>
+                    <span class="fw-bold">&emsp;정모일</span><br>	
                     <input name="jdate" class="somoim-input form-control" type="date" placeholder="Default input"
                            aria-label="default input example"><br>
-<!--                    <span class="fw-bold">&emsp;여행지</span><br>
-                    <input class="somoim-input form-control" type="text" placeholder="Default input"
-                           aria-label="default input example"><br>-->
+                   <span class="fw-bold">&emsp;여행지</span><br>
+                    <input name="loc_trip" class="somoim-input form-control" type="text" placeholder="Default input"
+                           aria-label="default input example"><br>
                     <span class="fw-bold">&emsp;집결지</span><br>
                     <input name="loc" class="somoim-input form-control" type="text" placeholder="Default input"
                            aria-label="default input example"><br>
                     <span class="fw-bold">&emsp;인&emsp;원</span><br>
                     <input name="total" class="somoim-input form-control" type="number" placeholder="Default input"
                            aria-label="default input example"><br>
-
+					
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>

@@ -11,16 +11,18 @@ import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface SomoimDao {
-	@Insert("insert into somoim values(seq_somoim.nextval,#{title},#{jdate},#{mdate},#{loc},#{total},#{photo},#{moimno}")
+	@Insert("INSERT INTO somoim VALUES (seq_somoim.nextval, #{title}, #{content}, #{jdate}, sysdate, #{loc}, #{loc_trip}, #{total}, #{photo}, #{moimno})")
 	public void insert(Somoim m );
 	
+	//특정 소모임 출력
 	@Select("select * from somoim where no=#{no}")
 	public Somoim select(@Param("no") int no);
 	
-	@Select("select * from somoim")
-	public ArrayList<Somoim> selectAll();
+	//특청 모임의 소모임들 출력
+	@Select("select * from somoim where moimno=#{moimno} order by moimno")
+	public ArrayList<Somoim> selectByMoim(@Param("moimno") int moimno);
 	
-	@Update("update somoim set loc=#{loc}, jdate=#{jdate} where no=#{no}")
+	@Update("update somoim set title=#{title}, content=#{content}, loc=#{loc}, loc_trip=#{loc_trip},jdate=#{jdate}, total=#{total},photo=#{photo} where no=#{no}")
 	public void update(Somoim m);
 	
 	@Delete("delete somoim where no=#{no}")

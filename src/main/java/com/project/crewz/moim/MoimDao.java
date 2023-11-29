@@ -20,7 +20,7 @@ public interface MoimDao {
 	@Select("select * from moim order by no")
 	public ArrayList<Moim> selectAll();
 	
-	@Update("update moim set content=#{content}, title=#{title} where no=#{no}")
+	@Update("update moim set content=#{content}, title=#{title}, info=#{info}, photo=#{photo}, photo2=#{photo2}, photo3=#{photo3} where no=#{no}")
 	public void update(Moim m);
 	
 	@Update("udpate moim set love=#{love}")
