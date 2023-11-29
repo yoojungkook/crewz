@@ -246,7 +246,9 @@
 
     <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        //비밀번호 일치 확인
+        /**
+         * 비밀번호 일치 여부 확인
+         */
         function changePwd() {
             let pwdNew1 = $("#pwdNew1").val();
             let pwdNew2 = $("#pwdNew2").val();
@@ -262,20 +264,25 @@
             }
         }
 
-        //회원탈퇴
+        /**
+         * 회원탈퇴
+         */
         function delMember() {
             let id = $("#id").val();
             if (window.confirm("정말로 탈퇴하시겠습니까?") == true) {
-                // sessionStorage.clear();
                 sessionStorage.removeItem("loginId");
                 location.href = "/member/delete?id=" + id;
             }
         }
 
-        //세션 가져오기
+        /**
+         * 세션 통해서 아이디 가져오기
+         */
         $("#profile-id").val(sessionStorage.getItem("loginId"));
 
-        //프로필 사진 교체
+        /**
+         * 프로필 사진 변경
+         */
         const profileChange = document.getElementById('profile-upload');
         const profileForm = document.getElementById('profile-form');
         const id = sessionStorage.getItem("loginId");
@@ -285,25 +292,16 @@
             }
         });
 
-        // profileChange.addEventListener('change', function () {
-        //     if (profileChange.files.length > 0) {
-        //         $.ajax({
-        //             type: 'POST',
-        //             url: '/profile',
-        //             data: new FormData(profileForm),
-        //             processData: false,
-        //             contentType: false,
-        //             success: function (data) {
-        //                 console.log('프로필 변경');
-        //             },
-        //             error: function (error) {
-        //                 console.error(error);
-        //             }
-        //         });
-        //     }
-        // });
-
-
+        /**
+         * 라디오 버튼에 체크했는지 확인 후 버튼 활성화 여부 결정
+         */
+        $(".reason").click(function(){
+           if($("input[type=radio]:checked").is(":checked")){
+              $("#deleteBtn").prop("disabled", false);
+           } else {
+               $("#deleteBtn").prop("disabled", true);
+           }
+        });
     </script>
 </div>
 <div class="col-1"></div>
