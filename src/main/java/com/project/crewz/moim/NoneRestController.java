@@ -45,7 +45,6 @@ public class NoneRestController {
 	//모임 추가(memberid는 test고정)
 	@PostMapping("")
 	public String add(MoimDto dto) {
-		
 		//memberid 임의 지정
 		dto.setMemberid("test");
 		String[] photo = new String[3];
@@ -76,6 +75,60 @@ public class NoneRestController {
 		return "redirect:/";
 	}
 	
+	//모임 수정
+	@PostMapping("/eidt")
+	public String edit( MoimDto dto ) {
+//		System.out.println("수정 : " + dto);
+		int moimno = dto.getNo();
+		
+		//원래 사진 이름 받기
+		MoimDto m = service.get(moimno);
+		String og_photo = m.getPhoto();
+		String og_photo2 = m.getPhoto2();
+		String og_photo3 = m.getPhoto3();
+		
+		//받은 dto 사진
+		String photo = dto.getF()[0].getOriginalFilename();
+		String photo2 = dto.getF()[1].getOriginalFilename();
+		System.out.println("photo2: " + photo2);
+		String photo3 = dto.getF()[2].getOriginalFilename();
+		System.out.println("photo3: " + photo3);
+		MultipartFile[] f = dto.getF();
+		File file1;File file2;File file3;
+		try {
+			if(photo.isEmpty()) { // 비어있을 경우;
+				dto.setPhoto(og_photo);
+			}else { //값이 들어온 경우
+				dto.setPhoto(photo);
+				file1 = new File(path + photo);
+				f[0].transferTo(file1);
+			}
+			
+			if(photo2.isEmpty()) {
+				dto.setPhoto2(og_photo2);
+			}else{
+				dto.setPhoto2(photo2);
+				file2 = new File(path + photo2);
+				f[1].transferTo(file2);
+			}
+			
+			if(photo3.isEmpty()) {
+				dto.setPhoto3(og_photo3);
+			}else {
+				dto.setPhoto3(photo3);
+				file3 = new File(path + photo3);
+				f[2].transferTo(file3);
+			}
+			service.editMoim(dto);
+		} catch (IllegalStateException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "redirect:/moim/"+dto.getNo();
+	}
+	
+	
 	//특정 모임 home화면 주소값 ex. /moim/3
 	@GetMapping("/{no}")
 	public String get(Model model,@PathVariable("no") int no) {
@@ -99,63 +152,9 @@ public class NoneRestController {
 		Map map = new HashMap<>();
 		ArrayList<SomoimDto> so_list =  so_service.getByMoim(no);
 		map.put("so_list", so_list);
-		
 		return map;
 	}
 	
-	//모임 수정
-	@PostMapping("/eidt")
-	public String edit( MoimDto dto ) {
-		System.out.println(dto);
-		int moimno = dto.getNo();
-		//원래 사진 이름 받기
-		MoimDto m = service.get(moimno);
-		String og_photo = m.getPhoto();
-		String og_photo2 = m.getPhoto2();
-		String og_photo3 = m.getPhoto3();
-		
-		//받은 dto 사진 확인하기
-		String photo = dto.getF()[0].getOriginalFilename();
-		String photo2 = dto.getF()[1].getOriginalFilename();
-		String photo3 = dto.getF()[2].getOriginalFilename();
-		
-		MultipartFile[] f = dto.getF();
-		File file1;File file2;File file3;
-		if(photo.isEmpty()) { // 비어있을 경우
-			dto.setPhoto(og_photo);
-			 file1 = new File(path + og_photo); 
-		}else { //값이 들어온 경우
-			dto.setPhoto(photo);
-			 file1 = new File(path + photo);
-		}
-		
-		if(photo2.isEmpty()) {
-			dto.setPhoto2(og_photo2);
-			 file2 = new File(path + og_photo2);
-		}else{
-			dto.setPhoto(photo2);
-			 file2 = new File(path + photo2);
-		}
-		
-		if(photo3.isEmpty()) {
-			dto.setPhoto3(og_photo3);
-			 file3 = new File(path + og_photo3);
-		}else {
-			dto.setPhoto(photo3);
-			 file3 = new File(path + photo3);
-		}
-		try {
-			f[0].transferTo(file1);
-			f[1].transferTo(file2);
-			f[2].transferTo(file3);
-			service.editMoim(dto);
-		} catch (IllegalStateException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return "redirect:/moim/"+dto.getNo();
-	}
 	
 	//이미지 읽기
 	@RequestMapping("/read-img")

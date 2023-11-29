@@ -90,7 +90,6 @@ public class SomoimController {
 	//소모임 수정
 	@PostMapping("/edit")
 	public String editSomoim(SomoimDto sd) {
-		System.out.println("수정 : " + sd);
 		SomoimDto s = service.get(sd.getNo());
 		String originalP = s.getPhoto();
 		String photo = sd.getF().getOriginalFilename();	
