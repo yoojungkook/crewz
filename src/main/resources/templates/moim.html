@@ -72,7 +72,7 @@
 				<div th:replace="~{moim/album :: item}"></div>
 			</div>
 			<!-- 게시판/채팅 -->
-			<div class="tab-pane fade" id="pills-board" role="tabpanel" aria-labelledby="pills-board-tab" tabindex="0">
+			<div th:insert="~{moim/board :: moim-board}" class="tab-pane fade" id="pills-board" role="tabpanel" aria-labelledby="pills-board-tab" tabindex="0">
 				게시판
 			</div>
 			<!-- 소모임 -->
@@ -87,7 +87,7 @@
 	</div>
 
 	<div th:if="${log == true}">
-		<div th:replace="~{index/msg :: msg}"></div>
+		<div th:replace="~{index/msgSend :: msgSend}"></div>
 	</div>
 	<div th:if="${log == false}">
 		<div th:replace="~{index/login :: login}">
@@ -209,6 +209,7 @@
 	<script type="text/javascript" src="/bootstrap/js/bootstrap.bundle.js"></script>
 	<script type="text/javascript" src="/js/moim/joinmoim.js"></script>
 	<script type="text/javascript" src="/js/cat/cat.js"></script>
+	<script type="text/javascript" src="/js/category/category.js"></script>
 	<!-- 앨범 -->
 	<script type="text/javascript" src="/js/moim/album-form.js"></script>
 	<!-- 후기 -->

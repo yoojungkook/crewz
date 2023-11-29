@@ -81,6 +81,9 @@ const info = (value) => {
     location.href = "/category/" + value + "/view?num=1";
 }
 
+/**
+ * 마이페이지로 이동
+ */
 const id = sessionStorage.getItem("loginId");
 const mypage = () => {
     location.href = "/myinfo/mypage?id=" + id;
@@ -90,6 +93,10 @@ function home() {
     location.href = "/";
 }
 
+/**
+ * 로그아웃 시 세션 스토리지에서 loginId 제거 후 index.html 이동
+ */
 function logout() {
-    location.href = "/member/logout";
+    sessionStorage.removeItem("loginId");
+    location.href = "/";
 }

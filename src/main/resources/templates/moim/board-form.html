@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="form" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-8 fw-bold" id="staticBackdropLabel">게시글 작성</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <span class="fw-bold">&emsp;제목</span><br>
+                <input class="form-control" type="text" placeholder="제목을 작성해 주세요" aria-label="default input example"><br>
+                <span class="fw-bold">&emsp;내용</span><br>
+                <input class="form-control" type="text" placeholder="내용을 작성해 주세요" aria-label="default input example"><br>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-primary">작성 완료</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

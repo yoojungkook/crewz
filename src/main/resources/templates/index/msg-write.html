@@ -1,0 +1,46 @@
+<div th:fragment="msgSend-choice">
+    <!-- 메세지를 선택할 그룹(모임, 소모임) 선택 -->
+    <div class="modal fade" id="writemsg" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div>
+                        <span>받는 사람</span><br/>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                선택
+                            </button>
+                            <ul id="moim-msg-list" class="dropdown-menu">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 메세지 작성 -->
+    <div class="modal fade" id="msg-writer" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id="f">
+                    <input type="hidden" id="msg-receiver-no" name="no" value="">
+                    <input type="hidden" id="msg-receiver-div" name="div" value="">
+                    <input type="hidden" id="msg-receiver-smemberid" name="smemberid" value="netu">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="msg-receiver">받는 사람: </h1>
+                    </div>
+                    <div class="modal-body">
+                        <h4 class="modal-title fs-5" id="msg-receiver-title">제목: <input type="text" name="title" value=""></h4>
+                        <textarea style="width: 100%; resize: none" autofocus required rows="7" name="content" maxlength="400"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-bs-target="#writemsg" data-bs-toggle="modal">이전으로</button>
+                        <button class="btn btn-success" onclick="sendMsg()">전송</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
