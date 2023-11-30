@@ -31,5 +31,4 @@ public class Review {
     private MultipartFile photo3;
 
     private Date mdate;
-
 }

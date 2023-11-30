@@ -33,8 +33,6 @@ public class ReviewController {
     @Value("${spring.servlet.multipart.location}")
     private String fileDir;
 
-
-
     @GetMapping("/review")
     public void allReview(Model model) {
         ArrayList<Review> list = service.getAll();
@@ -66,7 +64,6 @@ public class ReviewController {
         }
 
         r.setMemberid("testid"); // 테스트
-
         r.setFilename1(fileNames[0]);
         r.setFilename2(fileNames[1]);
         r.setFilename3(fileNames[2]);
@@ -112,15 +109,11 @@ public class ReviewController {
                 file.transferTo(new File(storeDir, fileNames[i]));
             }
         }
-
-
-
         r.setFilename1(fileNames[0]);
         r.setFilename2(fileNames[1]);
         r.setFilename3(fileNames[2]);
         service.editReview(r);
         return "redirect:/review/review";
-
     }
 
 

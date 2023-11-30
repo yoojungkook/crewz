@@ -7,9 +7,10 @@
     <link href="/css/review/styles.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
 
-
 <!--    <link rel="stylesheet" type="text/css" href="/css/cat/cat.css">-->
 <!--    <link rel="stylesheet" type="text/css" href="/css/cat/searchbox.css">-->
+    <link rel="stylesheet" type="text/css" href="/css/cat/cat.css">
+    <link rel="stylesheet" type="text/css" href="/css/cat/searchbox.css">
     <style>
         .rounded {
             margin: 5px
@@ -53,16 +54,9 @@
             padding: 5px 10px;
             font-size: 12px;
         }
-
-
     </style>
-
-
-
 </head>
 <body >
-
-
 
 
 <div class="container mt-5">
@@ -91,7 +85,6 @@
                     <p class="fs-5 mb-4">[[${list.content}]]</p>
 
                     <div id="wrp" style="overflow-x: auto; white-space:nowrap">
-
                         <img th:src="@{/images/{no}/{filename}(no=${list.no}, filename=${list.filename1})}" class="rounded" alt="대체 텍스트" width="100%"
                         th:onerror="this.onerror=null; this.src='/img/empty.png'; this.dataset.bsToggle='tooltip'; this.dataset.bsPlacement='bottom'; this.title='이미지를 업로드해주세요';"
                         data-bs-delay="0"/>
@@ -102,12 +95,10 @@
 
                         <img th:src="@{/images/{no}/{filename}(no=${list.no}, filename=${list.filename3})}" class="rounded" alt="대체 텍스트" width="100%"
                         th:onerror="this.onerror=null; this.src='/img/empty.png'; this.dataset.bsToggle='tooltip'; this.dataset.bsPlacement='bottom'; this.title='이미지를 업로드해주세요';"
-                        data-bs-delay="0"/>
-
+                        data-bs-delay="0"/>\
                     </div>
                 </section>
             </article>
-
 
             <!-- Comments section-->
             <section class="mb-5" >
@@ -138,11 +129,9 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>
-
 
             <div class="text-center">
             <!--                        <div th:if="${session.loginId == b.id}"> </div> 아이디같을때만 보이게끔 -->
@@ -184,13 +173,12 @@
 
 <script src="/js/review/scripts.js"></script>
 <script th:inline="javascript">
-
 // 게시글 불러오기
 $(document).ready(function() {
     $('.editButton').click(function() {
         var no = $(this).data('no');  // 게시글 번호를 가져옴
         $.ajax({
-            url: '/review/edit?no=' + no,  // 서버에서 해당 글의 데이터를 가져오는 URL
+            url: '/test/edit?no=' + no,  // 서버에서 해당 글의 데이터를 가져오는 URL
             type: 'GET',
             success: function(data) {
                 // 모달 창의 각 필드에 데이터를 채움
@@ -206,7 +194,7 @@ $(document).ready(function() {
         });
     });
 });
-
+  
 // 글삭제기능
 $(document).ready(function() {
 
@@ -342,26 +330,6 @@ $(document).ready(function() {
                                       '    </div>' +
                                       '        <div class="comment-content">'+ comment.content + '</div>' +
                                       '</div>';
-
-<!--                    var commentHtml = '<div class="d-flex mb-4" data-comment-no="' + comment.no + '">' +-->
-<!--                                      '    <div class="flex-shrink-0">' +-->
-<!--                                      '        <img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."/></div>' +-->
-<!--                                      '    <div class="ms-3">' +-->
-<!--                                      '        <div class="fw-bold">' + comment.memberid;-->
-<!--                                      // 로그인한 사용자의 아이디와 댓글 작성자의 아이디가 같으면 수정 및 삭제 버튼을 추가-->
-<!--                                      if (loggedInUserId === comment.memberid) {-->
-<!--                                          commentHtml += '            <button class="btn btn-sm btn-outline-secondary edit-comment-btn" style="padding: 0.1px 0.1px; margin-top: -5px; border: none; " >' +-->
-<!--                                                         '                <img src="/img/edit_button.png" alt="edit" width="15" height="15">' +-->
-<!--                                                         '            </button>' +-->
-<!--                                                         '            <button class="btn btn-sm btn-outline-danger delete-comment-btn" style="padding: 0.1px 0.1px; margin-top: -5.1px; border: none; ">' +-->
-<!--                                                         '                <img src="/img/delete_button.png" alt="delete" width="15" height="15">' +-->
-<!--                                                         '            </button>';-->
-<!--                                      }-->
-<!--                    commentHtml +=   '    </div>' +-->
-<!--                                     '        <div class="comment-content">'+ comment.content + '</div>' +-->
-<!--                                     '    </div>';-->
-
-
                     $cardBody.append(commentHtml);
                 });
                 setupCommentEvents();  // 댓글 요소에 이벤트 설정
@@ -433,12 +401,7 @@ $(document).ready(function() {
 
     }
 });
-
-
-
-
 </script>
-
 </body>
 </html>
 

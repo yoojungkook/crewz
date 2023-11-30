@@ -6,14 +6,12 @@ import java.util.ArrayList;
 
 @Mapper
 public interface ReviewDao {
-
-
-
     @Insert("insert into \"HONG\".\"TEST\" values(TEST_SEQ.NEXTVAL, #{memberid}, #{categoryno}, #{title}, #{content},#{filename1,jdbcType=VARCHAR},#{filename2,jdbcType=VARCHAR},#{filename3,jdbcType=VARCHAR}, sysdate, null)")
     void insert(Review r);
 
     @Select("select TEST_SEQ.NEXTVAL from dual")
     int getNextNo();
+    
     @Select("select * from \"HONG\".\"TEST\" where no=#{no}")
     Review select(@Param("no") int no);
 
@@ -25,9 +23,5 @@ public interface ReviewDao {
 
     @Select("select * from \"HONG\".\"TEST\"")
     ArrayList<Review> selectAll();
-
-
-
-
 }
 
