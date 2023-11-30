@@ -1,6 +1,5 @@
 package com.project.crewz.review;
 
-
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +29,4 @@ public class ReviewService {
     public void delReview(int no) {
         dao.delete(no);
     }
-
-
 }

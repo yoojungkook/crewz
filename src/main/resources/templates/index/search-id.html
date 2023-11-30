@@ -1,0 +1,37 @@
+<div th:fragment="search-id" class="modal fade" id="search-id-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container d-flex justify-content-center"
+                     style="padding-bottom: 30px; padding-top: 30px">
+                    <img src="/img/crewz.jpeg" style="width: 200px; height: 60px; text-align: center">
+                </div>
+
+                <div class="container d-flex justify-content-center" style="padding-bottom: 10px">
+                    <div style="font-size: 20px;">아이디 찾기</div>
+                </div>
+
+                <div class="container join">
+                    <input id="name" class="input-info" type="text" placeholder="이름">
+                </div>
+
+                <div class="container join">
+                    <input id="tel" class="input-info" type="text" placeholder="전화번호">
+                </div>
+
+                <div class="container d-flex justify-content-center" style="padding-bottom: 20px">
+                    <button type="button" class="btn btn-danger" onclick="searchId()">확인</button>
+                </div>
+
+                <hr/>
+
+                <div class="container"
+                     style="font-size: 15px; text-underline: grey; color: grey; text-align: center">
+                    <a aria-current="page" data-bs-toggle="modal" data-bs-target="#joinmodal">회원가입</a> | <a
+                        aria-current="page" data-bs-toggle="modal" data-bs-target="#loginmodal">로그인</a> | <a
+                        aria-current="page" data-bs-toggle="modal" data-bs-target="#search-pwd-modal">비밀번호 찾기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

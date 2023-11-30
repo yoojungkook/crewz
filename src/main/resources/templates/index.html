@@ -74,5 +74,88 @@
     <script type="text/javascript" src="/js/searchbox.js"></script>
     <script type="text/javascript" src="/js/notification.js"></script>
     <script type="text/javascript" src="/js/cat/logincheck.js"></script>
+  <script src="/jquery-3.7.1.js"></script>
+  <script src="/bootstrap/js/bootstrap.bundle.js"></script>
+  <script type="text/javascript" src="/js/cat/cat.js"></script>
+  <script type="text/javascript" src="/js/searchbox.js"></script>
+  <script type="text/javascript" src="/js/cat/logincheck.js"></script>
+  <script type="text/javascript" src="/js/cat/joincheck.js"></script>
+  <script type="text/javascript" src="/js/cat/search-account.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+  <script type="text/javascript" src="/js/category/category.js"></script>
+  <script type="text/javascript" src="/js/msg/msg-list.js"></script>
+  <script type="text/javascript" src="/js/msg/msg-write.js"></script>
+  <script type="text/javascript" src="/js/msg/msg-send.js"></script>
+  <script type="text/javascript" src="/js/notification.js"></script>
 </body>
+
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script th:inline="javascript" type="text/javascript">
+    /**
+     * 카카오 로그인
+     */
+    Kakao.init([[${kakao}]]);
+
+    function loginWithKakao() {
+        Kakao.Auth.login({
+            success: function (result) {
+                Kakao.API.request({
+                    url: "/v2/user/me",
+                    success: function (result2) {
+                        var id = result2.id;
+                        let properties = result2.properties;
+                        let name = properties.nickname;
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/member/checkId",
+                            data: {"id": id},
+                            success: function (result3) {
+                                if (result3 == '0') {//중복이 아닐 때
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/join/kakao",//카카오로 회원가입
+                                        data: {"id": id, "name": name},
+                                        datatype: "json",
+                                        success: function (result4) {
+                                            Swal.fire({
+                                                title: "회원가입이 완료되었습니다.",
+                                                text: "크루즈에 오신 것을 환영합니다.",
+                                                icon: "success",
+                                                confirmButtonColor: "#db3545",
+                                                confirmButtonText: "확인"
+                                            }).then((result5) => {
+                                                if (result5.isConfirmed) {
+                                                    sessionStorage.setItem("loginId", id);
+                                                    location.href = "/";
+                                                }
+                                            });
+                                        }
+                                    });
+                                } else if (result3 == '1') {//이미 가입한 아이디일 때
+                                    //로그인
+                                    sessionStorage.setItem("loginId", id);
+                                    location.href = "/";
+                                }
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        })
+                    },
+                    fail: function (error) {
+                        console.log(error)
+                    },
+                });
+            },
+            fail: function (error) {
+                console.log(error)
+            },
+        });
+    }
+</script>
+
 </html>

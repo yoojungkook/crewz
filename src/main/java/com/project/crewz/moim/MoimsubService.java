@@ -19,6 +19,11 @@ public class MoimsubService {
         return dao.getMoimsubList(moimno);
     }
 
+    //가입
+    public void joinMoim(Moimsub ms) {
+        dao.insert(ms);
+    }
+
     @Autowired
     public void setMoimsubDao(MoimsubDao dao) {
         this.dao = dao;
