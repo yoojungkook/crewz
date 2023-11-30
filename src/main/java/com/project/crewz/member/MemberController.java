@@ -19,6 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -99,17 +100,27 @@ public class MemberController {
         return "redirect:/myinfo/mypage?id=" + m.getId();
     }
 
-
     //로그아웃
     @GetMapping("/member/logout")
     public String logout(HttpSession session) {
         return "redirect:/";
     }
 
-    //회원탈퇴
     @RequestMapping("/member/delete")
     public String delMember(String id) {
+        Member m = service.get(id);
+
+        File dir = new File(path + m.getId());
+        if(dir.exists()){
+            try {
+                FileUtils.deleteDirectory(dir);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         service.delete(id);
+
         return "redirect:/";
     }
 
@@ -198,5 +209,38 @@ public class MemberController {
             result = "null";
         }
         return result;
+    }
+
+    @PostMapping("/join/kakao")
+    @ResponseBody
+    public void joinKakao(String id, String name) {
+        Member m = service.get(id);
+        Date birth = Date.valueOf("1111-11-11");
+        if (m == null) {
+            service.join(new Member(id, "null", name, birth, "null", "null", "kakao"));
+        }
+
+        Member m2 = service.get(id);
+
+        File dir = new File(path + m2.getId());
+        if (!(dir.exists())) {
+            dir.mkdirs();
+            System.out.println("폴더가 생성되었습니다.");
+        } else {
+            System.out.println("이미 폴더가 존재합니다.");
+        }
+
+        String copyProfile = path + "default.png";
+        String pasteProfileFolder = path + m2.getId();
+        String pasteProfile = pasteProfileFolder + File.separator + "default.png";
+
+        Path copyPath = Paths.get(copyProfile);
+        Path pastePath = Paths.get(pasteProfile);
+
+        try {
+            Files.copy(copyPath, pastePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

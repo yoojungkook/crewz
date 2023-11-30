@@ -56,7 +56,6 @@ function checkPwd() {
     const pwd = form.pwd.value.trim();
     const pwd2 = form.pwd2.value.trim();
 
-    //비밀번호 정규식
     if (!(new RegExp("^.(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{7,15}$").test(pwd))) {
         $("#pwdStatus").text("영어, 숫자, 특수문자를 포함하여 8자~16자 이내로 입력해주세요.");
         pwdChecked = 1;

@@ -7,7 +7,8 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
-                    <div class="container d-flex justify-content-center" style="padding-bottom: 30px; padding-top: 30px">
+                    <div class="container d-flex justify-content-center"
+                         style="padding-bottom: 30px; padding-top: 30px">
                         <img src="/img/crewz.jpeg" style="width: 200px; height: 60px; text-align: center">
                     </div>
 
@@ -27,10 +28,19 @@
                         <input id="join" type="button" value="로그인" onclick="memberLogin()" readonly>
                     </div>
 
+                    <div class="container"
+                         style="font-size: 15px; text-underline: grey; color: grey; text-align: center">
+                        <a aria-current="page" data-bs-toggle="modal" data-bs-target="#joinmodal">회원가입</a> | <a
+                            aria-current="page" data-bs-toggle="modal" data-bs-target="#search-id-modal">아이디 찾기</a> | <a
+                            aria-current="page" data-bs-toggle="modal" data-bs-target="#search-pwd-modal">비밀번호 찾기</a>
+                    </div>
+
                     <hr/>
 
-                    <div class="container" style="font-size: 15px; text-underline: grey; color: grey; text-align: center">
-                        <a aria-current="page" data-bs-toggle="modal" data-bs-target="#joinmodal">회원가입</a> | <a aria-current="page" data-bs-toggle="modal" data-bs-target="#search-id-modal">아이디 찾기</a> | <a aria-current="page" data-bs-toggle="modal" data-bs-target="#search-pwd-modal">비밀번호 찾기</a>
+                    <div style="text-align: center">
+                        <a class="btn_login" onclick="loginWithKakao()">
+                            <img src="/kakao-smaller.png">
+                        </a>
                     </div>
                 </div>
 

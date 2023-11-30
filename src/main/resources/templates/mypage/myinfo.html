@@ -10,13 +10,7 @@
     <link rel="stylesheet" href="/css/mypage/mypage.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script type="text/javascript">
-        //화면 시작
-        $(document).ready(function () {
-            $("#pwdStatusSuccess").hide();
-            $("#pwdStatusFail").hide();
-        });
-    </script>
+
 </head>
 <body>
 
@@ -25,7 +19,7 @@
         <div class="row">
             <div class="col"></div>
             <div class="col-6">
-                <a href="">
+                <a href="/">
                     <img src="/logo.png" style="width: 150px;height: 75px;">
                 </a>
                 마이페이지
@@ -97,7 +91,7 @@
                             </div>
                         </div>
                         <br/>
-                        <div>
+                        <div style="text-align: center;">
                             <label for="profile-upload" id="profile-upload-label">변경</label>
                             <input type="file" id="profile-upload" name="photo" style="display: none"
                                    accept="image/jpg, image/jpeg, image/png">
@@ -113,24 +107,21 @@
                         <table>
                             <tr>
                                 <th>이름</th>
-                                <td><input type="text" class="form-control" th:value="${m.name}" name="name"
-                                           th:readonly="true"></td>
+                                <td><input type="text" class="form-control" th:value="${m.name}" name="name" th:readonly="true"></td>
                             </tr>
                             <tr>
                                 <th>아이디</th>
-                                <td><input type="text" class="form-control" th:value="${m.id}" name="id" id="id"
-                                           th:readonly="true"></td>
+                                <td><input type="text" class="form-control" th:value="${m.id}" name="id" id="id" th:readonly="true"></td>
                             </tr>
                             <tr>
                                 <th style="vertical-align: top;">비밀번호</th>
                                 <td><input type="password" class="form-control" name="pwd" id="pwd" th:value="${m.pwd}"
                                            th:readonly="true"><br/>
-                                    <input type="password" class="form-control" name="pwdNew1" id="pwdNew1"
-                                           placeholder="새로운 비밀번호"><br/>
-                                    <input type="password" class="form-control" name="pwdNew2" id="pwdNew2"
-                                           oninput="changePwd()" placeholder="새로운 비밀번호 확인">
-                                    <label for="pwdNew2" id="pwdStatusFail">비밀번호가 일치하지 않습니다.</label>
-                                    <label for="pwdNew2" id="pwdStatusSuccess">비밀번호가 일치합니다.</label>
+                                    <input type="password" class="form-control" name="pwdNew1" id="pwdNew1" placeholder="새로운 비밀번호" onchange="changePwd()"><br/>
+                                    <input type="password" class="form-control" name="pwdNew2" id="pwdNew2" onchange="changePwd()" placeholder="새로운 비밀번호 확인">
+                                    <label for="pwdNew1" id="pwdStatus" style="font-size: 10px;">영어, 숫자, 특수문자를 포함해주세요.</label>
+                                    <label for="pwdNew2" id="pwdStatusFail" style="font-size: 10px">비밀번호가 일치하지 않습니다.</label>
+                                    <label for="pwdNew2" id="pwdStatusSuccess" style="font-size: 10px">비밀번호가 일치합니다.</label>
                                 </td>
                             </tr>
                             <tr>
@@ -141,7 +132,8 @@
                             </tr>
                             <tr>
                                 <th>전화번호</th>
-                                <td><input type="text" class="form-control" name="tel" th:value="${m.tel}"></td>
+                                <td><input type="text" class="form-control" name="tel" id="tel" th:value="${m.tel}" oninput="changeTel()"></td>
+                                <label for="tel" id="telStatus" style="font-size: 10px">01012345678 형식으로 입력해 주세요.</label>
                                 <td>
                                     <button type="submit" id="submitBtn" class="btn btn-danger">변경</button>
                                 </td>
@@ -238,71 +230,15 @@
                     </ul>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-danger" id="deleteBtn" onclick="delMember()" disabled>탈퇴</button>
+                    <button type="submit" class="btn btn-danger" id="deleteBtn" onclick="delMember()" disabled>탈퇴
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        /**
-         * 비밀번호 일치 여부 확인
-         */
-        function changePwd() {
-            let pwdNew1 = $("#pwdNew1").val();
-            let pwdNew2 = $("#pwdNew2").val();
-            if (pwdNew1 == pwdNew2) {
-                $("#pwd").val(pwdNew2);
-                $("#submitBtn").prop("disabled", false);
-                $("#pwdStatusSuccess").show();
-                $("#pwdStatusFail").hide();
-            } else if (pwdNew1 != pwdNew2) {
-                $("#submitBtn").prop("disabled", true);
-                $("#pwdStatusSuccess").hide();
-                $("#pwdStatusFail").show();
-            }
-        }
-
-        /**
-         * 회원탈퇴
-         */
-        function delMember() {
-            let id = $("#id").val();
-            if (window.confirm("정말로 탈퇴하시겠습니까?") == true) {
-                sessionStorage.removeItem("loginId");
-                location.href = "/member/delete?id=" + id;
-            }
-        }
-
-        /**
-         * 세션 통해서 아이디 가져오기
-         */
-        $("#profile-id").val(sessionStorage.getItem("loginId"));
-
-        /**
-         * 프로필 사진 변경
-         */
-        const profileChange = document.getElementById('profile-upload');
-        const profileForm = document.getElementById('profile-form');
-        const id = sessionStorage.getItem("loginId");
-        profileChange.addEventListener('change', function () {
-            if (profileChange.files.length > 0) {
-                profileForm.submit();
-            }
-        });
-
-        /**
-         * 라디오 버튼에 체크했는지 확인 후 버튼 활성화 여부 결정
-         */
-        $(".reason").click(function(){
-           if($("input[type=radio]:checked").is(":checked")){
-              $("#deleteBtn").prop("disabled", false);
-           } else {
-               $("#deleteBtn").prop("disabled", true);
-           }
-        });
-    </script>
+    <script type="text/javascript" src="/js/mypage/myinfo.js"></script>
 </div>
 <div class="col-1"></div>
 </body>
