@@ -51,5 +51,70 @@ public class MoimService {
 		MoimDto dto = new MoimDto(m.getNo(),m.getCatno(),m.getMemberid(),m.getInfo(),m.getTitle(),m.getContent(),m.getPhoto(),m.getPhoto2(),m.getPhoto3(),m.getMdate(),m.getLove(),null);
 		return dto;
 	}
-	
+
+	/**
+	 * 입력받은 카테고리 번호(no)의 모임 리스트
+	 * @param no
+	 * @return
+	 */
+	public ArrayList<Moim> findByCategory(int no) {
+		ArrayList<Moim> list = dao.getAllCategory(no);
+
+		return list;
+	}
+
+	/**
+	 * 입력받은 카테고리 번호(no)의 모임 리스트
+	 * @param no
+	 * @return
+	 */
+	public ArrayList<Moim> findByCategoryAndTitle(int no, String title) {
+		ArrayList<Moim> list = dao.getAllCategoryAndTitle(no, "%" + title + "%");
+
+		return list;
+	}
+
+	/**
+	 * 입력받은 모임의 한줄소개(info)의 모임 리스트
+	 * @param info
+	 * @return
+	 */
+	public ArrayList<Moim> findByInfo(String info) {
+		ArrayList<Moim> list = dao.getAllInfo("%" + info + "%");
+
+		return list;
+	}
+
+	/**
+	 * 입력받은 모임의 타이틀(title)의 모임 리스트
+	 * @param title
+	 * @return
+	 */
+	public ArrayList<Moim> findByTitle(String title) {
+		ArrayList<Moim> list = dao.getAllTitle("%" + title + "%");
+
+		return list;
+	}
+
+	/**
+	 * 입력받은 멤버의 id(memberid)의 모임 리스트
+	 * @param memberid
+	 * @return
+	 */
+	public ArrayList<Moim> findByMemberid(String memberid) {
+		ArrayList<Moim> list = dao.getAllMemberid(memberid);
+
+		return list;
+	}
+
+	/**
+	 * 입력받은 모임 번호(no)의 멤버 리스트
+	 * @param no
+	 * @return
+	 */
+	public ArrayList<String> getAllMembers(int no) {
+		ArrayList<String> list = dao.getMoimMember(no);
+
+		return list;
+	}
 }

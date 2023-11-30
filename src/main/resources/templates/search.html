@@ -18,31 +18,18 @@
 <body>
 
     <!-- 내비바 -->
-    <nav class="navbar navbar-expand-lg" style="height: 70px;">
-        <div class="container-fluid d-flex flex-row-reverse">
-            <div id="navbarNav">
-                <ul class="navbar-nav">
-                    <!-- 로그인 되어 있을 때 -->
-                    <th:block th:if="${log == true}">
-                        <div th:replace="~{index/nav-login :: login-info}"></div>
-                    </th:block>
+    <div th:replace="~{nav :: nav}"></div>
 
-                    <!-- 로그아웃 되어 있을 때 -->
-                    <th:block th:if="${log == false}">
-                        <div th:replace="~{index/nav-logout :: logout-info}"></div>
-                    </th:block>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+    <!-- 중앙 컨텐츠 -->
     <div id="wrapper">
+        <!--로고 사진-->
         <div class="container d-flex justify-content-center" onclick="home()">
             <div style="text-align: center;margin: 3px;">
                 <img id="logo" src="/img/home-logo.png"/>
             </div>
         </div><br/>
-      
+
+        <!-- 검색창 -->
         <div th:replace="~{index/searchbox-result :: search-box(${category}, ${list}, ${msgSend})}"></div>
         <br/>
 
@@ -54,27 +41,28 @@
         </div>
     </div>
 
-    <div th:if="${log == true}">
-        <div th:replace="~{test/msgSend :: msgSend}"></div>
-    </div>
-    <div th:if="${log == false}">
-        <div th:replace="~{test/login :: login}">
-        </div>
-        <div th:replace="~{test/join :: join}">
-        </div>
-    </div>
+    <!-- 로그인 되어 있지 않을 때 -->
+    <div th:replace="~{index/login :: login}"></div>
+    <div th:replace="~{index/join :: join}"></div>
 
-    <div th:if="${log == true}">
-        <div class="container-fluid fixed-bottom d-flex justify-content-end" style="padding-bottom: 20px;">
-            <img src="/img/plusbotton.png" style="width: 60px; height: 60px" data-bs-toggle="modal" data-bs-target="#staticBackdrop"/>
-        </div>
-        <div th:replace="~{index/moim-add :: addMoim}"></div>
+    <!-- 로그인 되어 있을 때 -->
+    <div th:replace="~{index/msg :: msgSend}"></div>
+    <div th:replace="~{index/msg-write :: msgSend-choice}"></div>
+    <div th:replace="~{index/moim-add :: addMoim}"></div>
+    <div class="container-fluid fixed-bottom d-flex justify-content-end" style="padding-bottom: 20px;">
+        <img src="/img/plusbotton.png" style="width: 60px; height: 60px" data-bs-toggle="modal" data-bs-target="#staticBackdrop"/>
     </div>
 
     <script src="/jquery-3.7.1.js"></script>
-    <script src="/bootstrap/js/bootstrap.js" defer></script>
-    <script src="/bootstrap/js/bootstrap.bundle.js" defer></script>
-    <script type="text/javascript" src="/js/category/category.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="/js/cat/index.js"></script>
+    <!--    <script type="text/javascript" src="/js/category/category.js"></script>-->
+    <script type="text/javascript" src="/js/msg/msg-list.js"></script>
+    <script type="text/javascript" src="/js/msg/msg-write.js"></script>
+    <script type="text/javascript" src="/js/msg/msg-send.js"></script>
     <script type="text/javascript" src="/js/searchbox.js"></script>
+    <script type="text/javascript" src="/js/notification.js"></script>
+    <script type="text/javascript" src="/js/cat/logincheck.js"></script>
 </body>
 </html>

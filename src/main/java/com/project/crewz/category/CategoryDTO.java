@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Category {
+public class CategoryDTO {
     private int no;
     private String name;
     private String photo;

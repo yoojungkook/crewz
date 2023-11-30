@@ -1,0 +1,58 @@
+<div th:fragment="content-myinfo" id="content-myinfo">
+    <div class="row">
+        <div class="col-3">
+            <figure class="figure">
+                <div id="profile-container">
+                    <image id="profile-img" src="/logo.png"/>
+                </div>
+                <br/>
+                <a href="">
+                  <figcaption class="figure-caption text-center" style="font-weight: bold">사진 변경</figcaption>
+                </a>
+            </figure>
+        </div>
+        <div class="col-9">
+            <form action="/member/edit" method="post">
+                <input type="hidden" name="photo" value="null">
+                <input type="hidden" name="site" value="null">
+                <table>
+                    <tr>
+                        <th>이름</th>
+                        <td><input type="text" class="form-control" th:value="${m.name}" name="name"
+                                   th:readonly="true"></td>
+                    </tr>
+                    <tr>
+                        <th>아이디</th>
+                        <td><input type="text" class="form-control" th:value="${m.id}" name="id" id="id"
+                                   th:readonly="true"></td>
+                    </tr>
+                    <tr>
+                        <th style="vertical-align: top;">비밀번호</th>
+                        <td><input type="password" class="form-control" name="pwd" id="pwd" th:value="${m.pwd}"
+                                   th:readonly="true"><br/>
+                            <input type="password" class="form-control" name="pwdNew1" id="pwdNew1"
+                                   placeholder="새로운 비밀번호"><br/>
+                            <input type="password" class="form-control" name="pwdNew2" id="pwdNew2"
+                                   oninput="checkPwd()" placeholder="새로운 비밀번호 확인">
+                            <label for="pwdNew2" id="pwdStatusFail">비밀번호가 일치하지 않습니다.</label>
+                            <label for="pwdNew2" id="pwdStatusSuccess">비밀번호가 일치합니다.</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>생년월일</th>
+                        <td><input type="date" class="form-control" name="birth" th:value="${m.birth}"
+                                   th:readonly="true" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>전화번호</th>
+                        <td><input type="text" class="form-control" name="tel" th:value="${m.tel}"></td>
+                        <td>
+                            <button type="submit" id="submitBtn" class="btn btn-danger">변경</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>

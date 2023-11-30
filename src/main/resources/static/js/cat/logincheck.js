@@ -38,17 +38,17 @@ window.onload = () => {
  * login.html에서 로그인 버튼 클릭할 경우 실행
  */
 function memberLogin() {
-    if (log == true) {
+    if(log == true) {
         location.href = "/";
     }
 
-    let id = document.getElementById("log-id");
-    let pwd = document.getElementById("log-pwd");
+    let log_id = document.getElementById("log-id");
+    let log_pwd = document.getElementById("log-pwd");
 
     $.ajax({
         url: "/logincheck",
         type: "post",
-        data: {"id": id.value, "pwd": pwd.value},
+        data: {"id": log_id.value, "pwd": log_pwd.value},
         datatype: "json",
         success: function (result) {
             if (result.id == null) {

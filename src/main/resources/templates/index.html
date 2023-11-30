@@ -50,31 +50,30 @@
             </div>
         </div>
     </div>
+
     <!-- 로그인 되어 있지 않을 때 -->
-    <div th:if="${log == false}">
-        <div th:replace="~{index/login :: login}">
-        </div>
-        <div th:replace="~{index/join :: join}">
-        </div>
-    </div>
-</div>
+    <div th:replace="~{index/login :: login}"></div>
+    <div th:replace="~{index/join :: join}"></div>
 
-  <!-- 아이디, 비밀번호 찾기 모달창 -->
-  <div th:replace="~{index/search-id :: search-id}"></div>
-  <div th:replace="~{index/search-pwd :: search-pwd}"></div>
-
-  <!-- 로그인 되어 있을 때 -->
-    <div th:if="${log == true}">
-        <div th:replace="~{index/msg :: msgSend}"></div>
-        <div th:replace="~{index/msg-write :: msgSend-choice}"></div>
-        <div th:replace="~{index/moim-add :: addMoim}"></div>
-        <div class="container-fluid fixed-bottom d-flex justify-content-end" style="padding-bottom: 20px;">
-            <img src="/img/plusbotton.png" style="width: 60px; height: 60px" data-bs-toggle="modal" data-bs-target="#staticBackdrop"/>
-        </div>
-    </div>
+    <!-- 로그인 되어 있을 때 -->
+    <div th:replace="~{index/msg :: msgSend}"></div>
+    <div th:replace="~{index/msg-write :: msgSend-choice}"></div>
     <div th:replace="~{index/moim-add :: addMoim}"></div>
-</div>
+    <div class="container-fluid fixed-bottom d-flex justify-content-end" style="padding-bottom: 20px;">
+        <img src="/img/plusbotton.png" style="width: 60px; height: 60px" data-bs-toggle="modal" data-bs-target="#staticBackdrop"/>
+    </div>
 
+    <script src="/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="/js/cat/index.js"></script>
+    <script type="text/javascript" src="/js/category/category.js"></script>
+    <script type="text/javascript" src="/js/msg/msg-list.js"></script>
+    <script type="text/javascript" src="/js/msg/msg-write.js"></script>
+    <script type="text/javascript" src="/js/msg/msg-send.js"></script>
+    <script type="text/javascript" src="/js/searchbox.js"></script>
+    <script type="text/javascript" src="/js/notification.js"></script>
+    <script type="text/javascript" src="/js/cat/logincheck.js"></script>
   <script src="/jquery-3.7.1.js"></script>
   <script src="/bootstrap/js/bootstrap.bundle.js"></script>
   <script type="text/javascript" src="/js/cat/cat.js"></script>

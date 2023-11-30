@@ -1,7 +1,7 @@
 let receiver = document.getElementById("msg-receiver");
 let title = document.querySelector("#f input[name='title']");
 let content = document.querySelector("#f textarea");
-let id = 'netu';
+let id = localStorage.getItem("loginId");
 
 let data = {
     no : "",
@@ -43,7 +43,7 @@ const sendMsg = () => {
         datatype: "json",
         success: function(result) {
             alert("성공!");
-            sendMessage();
+            sendMessage(data.no, data.div,);
         }, error: function(result) {
             alert("성공!");
         }

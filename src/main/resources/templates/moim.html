@@ -95,8 +95,8 @@
 		<div th:replace="~{index/join :: join}">
 		</div>
 	</div>
-	
-	
+
+
 	<!--소모임 수성 모달 창, title,content,jdate,loc_trip, loc, total 변경가능 , somoimno와 moimno은 hidden타이브로 함께 보냄  -->
 	<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -119,7 +119,7 @@
 		                    <span class="fw-bold">&emsp;소모임소개</span><br>
 		                    <input name="content" id="somoimcontent" class="somoim-input form-control" type="text" placeholder="Default input"
 		                           aria-label="default input example"><br>
-		                    <span class="fw-bold">&emsp;정모일</span><br>	
+		                    <span class="fw-bold">&emsp;정모일</span><br>
 		                    <input name="jdate" id="somoimjdate"class="somoim-input form-control" type="date" placeholder="Default input"
 		                           aria-label="default input example"><br>
 		                   	<span class="fw-bold">&emsp;여행지</span><br>
@@ -131,8 +131,8 @@
 		                    <span class="fw-bold">&emsp;인&emsp;원</span><br>
 		                    <input name="total" id="somoimtotal" class="somoim-input form-control" type="number" placeholder="Default input"
 		                           aria-label="default input example"><br>
-		                    <input type="hidden" name="moimno" id="somoimMoimno">      
-		                    <input type="hidden" name="no" id="somoimno">              
+		                    <input type="hidden" name="moimno" id="somoimMoimno">
+		                    <input type="hidden" name="no" id="somoimno">
 		                </div>
 		                <div class="modal-footer">
 		                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
@@ -142,9 +142,9 @@
 	            </div>
 	        </div>
     	</div>
-    	
-    	
-    	
+
+
+
 	<!--모임 수정 모달 창, 본인만 수정 가능하게-->
 	<div th:fragment="addMoim" class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
@@ -173,11 +173,11 @@
 		        <br><br><br>
 		        <span class="fw-bold">하고 싶은 말을 적어주세요!</span><br> <br>
 		        <textarea class="somoim-input form-control" name="content" id="moimcontent" style="height:200px;" placeholder="Describe yourself here..." aria-label="default input example">
-					
+
 				</textarea>
 				<input type="hidden" name="no" id="moimno">
 		        <br><br><br>
-		        
+
 		        <span class="fw-bold">모임을 보여주세요!!</span><br><br>
 		        <div class="mb-3">
 	  				<input name="f" class="form-control form-control-sm" id="formFileSm1" type="file">
@@ -224,7 +224,7 @@
 			      data: {"somoimno": num},
 			      dataType: "json",
 				  success: function (data) {
-						console.log(data.sd.title); 
+						console.log(data.sd.title);
 						//document.getElementById("inputGroupFile01").value = data.sd.fname;
 						document.getElementById("somoimno").value = data.sd.no;
 						document.getElementById("somoimMoimno").value = data.sd.moimno;
@@ -234,7 +234,7 @@
 						document.getElementById("somoimloc_trip").value = data.sd.loc_trip;
 						document.getElementById("somoimloc").value = data.sd.loc;
 						document.getElementById("somoimtotal").value = data.sd.total;
-						
+
 					}
 			});
 		}
@@ -251,7 +251,7 @@
 						document.getElementById("moimcontent").value = data.m.content;
 				  }
 			});
-		} 
+		}
 	</script>
 </body>
 </html>
