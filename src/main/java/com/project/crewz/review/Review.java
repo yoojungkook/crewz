@@ -16,7 +16,7 @@ import java.util.List;
 @ToString
 public class Review {
     private int no;
-    private int moimno;
+    private int SOMOIMNO;
     private String memberid;
     private String categoryno;
     private String title;
@@ -31,6 +31,4 @@ public class Review {
     private MultipartFile photo3;
 
     private Date mdate;
-
-//    private int star;
 }

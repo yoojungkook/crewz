@@ -86,52 +86,56 @@
              tabindex="0">
             <div class="row">
                 <div class="col-1" id="profile" style="padding: 0">
-                    <figure class="figure">
+                    <form action="/profile" method="post" enctype="multipart/form-data" id="profile-form">
                         <div id="profile-container">
-                            <image id="profile-img" src="/logo.png"/>
+                            <div th:if="${m.photo != 'null'}">
+                                <img id="profile-img" th:src="@{/profile/read(id=${m.id}, photo=${m.photo})}"/>
+                            </div>
+                            <div th:unless="${m.photo != 'null'}">
+                                <img id="profile-img" th:src="@{/profile/read(id=${m.id}, photo='zero')}"/>
+                            </div>
                         </div>
                         <br/>
-                        <a href="">
-                            <figcaption class="figure-caption text-center" style="font-weight: bold">사진 변경</figcaption>
-                        </a>
-                    </figure>
+                        <div>
+                            <label for="profile-upload" id="profile-upload-label">변경</label>
+                            <input type="file" id="profile-upload" name="photo" style="display: none"
+                                   accept="image/jpg, image/jpeg, image/png">
+                            <input id="profile-id" type="hidden" name="id" value="">
+                        </div>
+                        <!--                        <input type="submit" value="변경">-->
+                    </form>
                 </div>
 
                 <div class="col-6" style="padding: 0">
                     <form action="/member/edit" method="post">
-                        <input type="hidden" name="photo" value="null">
                         <input type="hidden" name="site" value="null">
                         <table>
                             <tr>
                                 <th>이름</th>
                                 <td><input type="text" class="form-control" th:value="${m.name}" name="name"
-                                           th:readonly="true" ></td>
+                                           th:readonly="true"></td>
                             </tr>
                             <tr>
                                 <th>아이디</th>
                                 <td><input type="text" class="form-control" th:value="${m.id}" name="id" id="id"
-                                           th:readonly="true" ></td>
+                                           th:readonly="true"></td>
                             </tr>
                             <tr>
                                 <th style="vertical-align: top;">비밀번호</th>
                                 <td><input type="password" class="form-control" name="pwd" id="pwd" th:value="${m.pwd}"
-                                           th:readonly="true" ><br/>
+                                           th:readonly="true"><br/>
                                     <input type="password" class="form-control" name="pwdNew1" id="pwdNew1"
                                            placeholder="새로운 비밀번호"><br/>
                                     <input type="password" class="form-control" name="pwdNew2" id="pwdNew2"
-                                           oninput="checkPwd()" placeholder="새로운 비밀번호 확인">
+                                           oninput="changePwd()" placeholder="새로운 비밀번호 확인">
                                     <label for="pwdNew2" id="pwdStatusFail">비밀번호가 일치하지 않습니다.</label>
                                     <label for="pwdNew2" id="pwdStatusSuccess">비밀번호가 일치합니다.</label>
                                 </td>
-
-<!--                                <td style="vertical-align: bottom">-->
-<!--                                    <button type="submit" class="btn btn-danger" onclick="pwdChange()">변경</button>-->
-<!--                                </td>-->
                             </tr>
                             <tr>
                                 <th>생년월일</th>
                                 <td><input type="date" class="form-control" name="birth" th:value="${m.birth}"
-                                           th:readonly="true" disabled>
+                                           th:readonly="true">
                                 </td>
                             </tr>
                             <tr>
@@ -200,12 +204,12 @@
                     <h6 style="font-weight: bold">아이디 재사용 및 복구 불가</h6>
                     <p>탈퇴하면 기존에 사용한 아이디는 재사용 및 복구가 불가능합니다.</p>
                 </div>
-
+                <br/>
                 <div class="row">
                     <h6 style="font-weight: bold">회원 정보 및 개인 데이터 삭제</h6>
                     <p>탈퇴 시 계정의 모든 정보는 삭제됩니다.</p>
                 </div>
-
+                <br/>
                 <div class="row">
                     <h6 style="font-weight: bold">
                         탈퇴하는 이유를 선택해주세요</h6>
@@ -220,12 +224,20 @@
                         </li>
                         <li class="list-group-item">
                             <input class="reason" type="radio" th:value="3" id="thirdRadio">
-                            <label class="form-check-label" for="thirdRadio">####</label>
+                            <label class="form-check-label" for="thirdRadio">새로운 계정을 만들고 싶어서</label>
+                        </li>
+                        <li class="list-group-item">
+                            <input class="reason" type="radio" th:value="3" id="fourthRadio">
+                            <label class="form-check-label" for="fourthRadio">내가 찾는 모임이 없어서</label>
+                        </li>
+                        <li class="list-group-item">
+                            <input class="reason" type="radio" th:value="3" id="fifthRadio">
+                            <label class="form-check-label" for="fifthRadio">기타</label>
                         </li>
                     </ul>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-danger" id="delete" onclick="delMember()">탈퇴</button>
+                    <button type="submit" class="btn btn-danger" id="deleteBtn" onclick="delMember()" disabled>탈퇴</button>
                 </div>
             </div>
         </div>
@@ -233,7 +245,8 @@
 
     <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        function checkPwd() {
+        //비밀번호 일치 확인
+        function changePwd() {
             let pwdNew1 = $("#pwdNew1").val();
             let pwdNew2 = $("#pwdNew2").val();
             if (pwdNew1 == pwdNew2) {
@@ -248,12 +261,48 @@
             }
         }
 
+        //회원탈퇴
         function delMember() {
             let id = $("#id").val();
             if (window.confirm("정말로 탈퇴하시겠습니까?") == true) {
+                // sessionStorage.clear();
+                sessionStorage.removeItem("loginId");
                 location.href = "/member/delete?id=" + id;
             }
         }
+
+        //세션 가져오기
+        $("#profile-id").val(sessionStorage.getItem("loginId"));
+
+        //프로필 사진 교체
+        const profileChange = document.getElementById('profile-upload');
+        const profileForm = document.getElementById('profile-form');
+        const id = sessionStorage.getItem("loginId");
+        profileChange.addEventListener('change', function () {
+            if (profileChange.files.length > 0) {
+                profileForm.submit();
+            }
+        });
+
+        // profileChange.addEventListener('change', function () {
+        //     if (profileChange.files.length > 0) {
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: '/profile',
+        //             data: new FormData(profileForm),
+        //             processData: false,
+        //             contentType: false,
+        //             success: function (data) {
+        //                 console.log('프로필 변경');
+        //             },
+        //             error: function (error) {
+        //                 console.error(error);
+        //             }
+        //         });
+        //     }
+        // });
+
+
     </script>
 </div>
 <div class="col-1"></div>

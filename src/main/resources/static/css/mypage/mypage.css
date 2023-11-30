@@ -82,11 +82,11 @@ ul#menu li button:hover i {
     color: #fc4c4c;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     background-color: #efefef;
 }
 
-.nav-pills .nav-link.active i{
+.nav-pills .nav-link.active i {
     color: #fc4c4c;
 }
 
@@ -110,4 +110,8 @@ ul#menu li button:hover i {
 .menu-msg a.active {
     background-color: #fc4c4c;
     color: white;
+}
+
+input:focus {
+    outline: none;
 }

@@ -39,7 +39,7 @@
 				</li>
 				<li class="nav-item" role="presentation">
 					<button class="nav-link" id="pills-somoim-tab" data-bs-toggle="pill" data-bs-target="#pills-somoim"
-							type="button" role="tab" aria-controls="pills-somoim" aria-selected="false" onclick="somoim(0)">소모임
+							type="button" role="tab"  aria-controls="pills-somoim" aria-selected="false" th:onclick="somoim([[${dto.no}]])">소모임
 					</button>
 				</li>
 				<li class="nav-item" role="presentation">
@@ -50,13 +50,16 @@
 			</ul>
 		</div>
 
-		<!-- 가입하기 버튼, 좋아요 버튼 -->
+		<!-- 가입하기 버튼, 좋아요 버튼 가입하기 기능 완료! but 나중에 세션이나 토큰에서 userid받아서 가입버튼 없애기-->
 		<div class="fixed-bottom d-flex justify-content-center" style="padding-bottom: 20px;">
-			<input type="button" id="join-btn" class="shadow btn shadow btn btn-danger " value="가입하기">
+			<input type="button" id="join-btn" class="shadow btn shadow btn btn-danger " th:onclick="joinmoim([[${dto.no}]],'test')" value="가입하기">
 			<div id="heart" onclick="heart_check()">
 				<i id="like" class="far fa-heart fa-2xl join-btn" style="color: #dc3545;"></i>
 				<i id="dislike" class="fas fa-heart fa-2xl join-btn" style="color: #dc3545; display: none"></i>
 			</div>
+			<!--본인 모임만 수정해야함-->
+			<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+			 data-bs-target="#staticBackdrop2" th:onclick="updateMoim([[${dto.no}]])">모임수정</button>
  		</div>
 
 		<!--각 컨텐츠-->
@@ -69,7 +72,7 @@
 				<div th:replace="~{moim/album :: item}"></div>
 			</div>
 			<!-- 게시판/채팅 -->
-			<div class="tab-pane fade" id="pills-board" role="tabpanel" aria-labelledby="pills-board-tab" tabindex="0">
+			<div th:insert="~{moim/board :: moim-board}" class="tab-pane fade" id="pills-board" role="tabpanel" aria-labelledby="pills-board-tab" tabindex="0">
 				게시판
 			</div>
 			<!-- 소모임 -->
@@ -92,11 +95,115 @@
 		<div th:replace="~{index/join :: join}">
 		</div>
 	</div>
+	
+	
+	<!--소모임 수성 모달 창, title,content,jdate,loc_trip, loc, total 변경가능 , somoimno와 moimno은 hidden타이브로 함께 보냄  -->
+	<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <h1 class="modal-title fs-8 fw-bold" id="staticBackdropLabel">소모임 수정</h1>
+	                    <button type="button"x class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	                </div>
+	                <form action="/somoim/edit" method="post" enctype="multipart/form-data">
+						<input type="hidden" th:value="${dto.no}" name="moimno">
+		                <div class="modal-body">
+							<span class="fw-bold">&emsp;썸네일 선택</span><br>
+		                    <div class="somoim-input input-group mb-3">
+		                        <label class="input-group-text" for="inputGroupFile01">올리기</label>
+		                        <input type="file" name="f" class="form-control" id="inputGroupFile01">
+		                    </div>
+		                    <span class="fw-bold">&emsp;소모임이름</span><br>
+		                    <input name="title" id="somoimtitle" class="somoim-input form-control" type="text" placeholder="Default input"
+		                           aria-label="default input example"><br>
+		                    <span class="fw-bold">&emsp;소모임소개</span><br>
+		                    <input name="content" id="somoimcontent" class="somoim-input form-control" type="text" placeholder="Default input"
+		                           aria-label="default input example"><br>
+		                    <span class="fw-bold">&emsp;정모일</span><br>	
+		                    <input name="jdate" id="somoimjdate"class="somoim-input form-control" type="date" placeholder="Default input"
+		                           aria-label="default input example"><br>
+		                   	<span class="fw-bold">&emsp;여행지</span><br>
+		                    <input name="loc_trip" id="somoimloc_trip"class="somoim-input form-control" type="text" placeholder="Default input"
+		                           aria-label="default input example"><br>
+		                    <span class="fw-bold">&emsp;집결지</span><br>
+		                    <input name="loc" id="somoimloc" class="somoim-input form-control" type="text" placeholder="Default input"
+		                           aria-label="default input example"><br>
+		                    <span class="fw-bold">&emsp;인&emsp;원</span><br>
+		                    <input name="total" id="somoimtotal" class="somoim-input form-control" type="number" placeholder="Default input"
+		                           aria-label="default input example"><br>
+		                    <input type="hidden" name="moimno" id="somoimMoimno">      
+		                    <input type="hidden" name="no" id="somoimno">              
+		                </div>
+		                <div class="modal-footer">
+		                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+		                    <button type="submit" class="btn btn-primary">수정완료</button>
+		                </div>
+		            </form>
+	            </div>
+	        </div>
+    	</div>
+    	
+    	
+    	
+	<!--모임 수정 모달 창, 본인만 수정 가능하게-->
+	<div th:fragment="addMoim" class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="staticBackdropLabel">모임 수정하기</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body text-center">
+			  <form action="/moim/eidt" method="post" enctype="multipart/form-data" style="padding:0 50px;">
+<!--		        <span class="fw-bold">어떤 모임인가요?</span><br><br>
+				<input type="radio" class="btn-check" name="catno" value="1" id="exercise_select" autocomplete="off">
+				<label class="btn btn-outline-danger" for="exercise_select">운동</label>
+				<input type="radio" class="btn-check" name="catno" value="2" id="reading_select" autocomplete="off">
+				<label class="btn btn-outline-danger" for="reading_select">독서</label>
+				<input type="radio" class="btn-check" name="catno" value="3" id="trip-select" autocomplete="off">
+				<label class="btn btn-outline-danger" for="trip-select">여행</label>
+				<input type="radio" class="btn-check" name="catno" value="4" id="other-select" autocomplete="off">
+				<label class="btn btn-outline-danger" for="other-select">기타</label>
+		        <br><br><br>-->
+		        <span class="fw-bold">모임 이름을 적어주세요</span><br><br>
+		        <input class="somoim-input form-control" name="title" id="moimtitle" type="text" placeholder="ex) Root Trip!" aria-label="default input example">
+		        <br><br><br>
+		        <span class="fw-bold">저희 모임은 이런 모음이에요!</span><br> <br>
+		        <input class="somoim-input form-control" name="info" id="moiminfo" type="text" placeholder="ex)국내여행을 위한 크루!" aria-label="default input example">
+		        <br><br><br>
+		        <span class="fw-bold">하고 싶은 말을 적어주세요!</span><br> <br>
+		        <textarea class="somoim-input form-control" name="content" id="moimcontent" style="height:200px;" placeholder="Describe yourself here..." aria-label="default input example">
+					
+				</textarea>
+				<input type="hidden" name="no" id="moimno">
+		        <br><br><br>
+		        
+		        <span class="fw-bold">모임을 보여주세요!!</span><br><br>
+		        <div class="mb-3">
+	  				<input name="f" class="form-control form-control-sm" id="formFileSm1" type="file">
+				</div>
+				<div class="mb-3">
+	  				<input name="f" class="form-control form-control-sm" id="formFileSm2" type="file">
+				</div>
+				<div class="mb-3">
+	  				<input name="f" class="form-control form-control-sm" id="formFileSm3" type="file">
+				</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		        <button type="submit" id="add-btn"class="btn btn-primary">수정하기</button>
+		      </div>
+		   </form>
+	    </div>
+	  </div>
+	</div>
 
 	<!-- script 영역 -->
 	<script src="https://kit.fontawesome.com/9b5b7c8809.js" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="/jquery-3.7.1.js"></script>
 	<script type="text/javascript" src="/bootstrap/js/bootstrap.bundle.js"></script>
+	<script type="text/javascript" src="/js/moim/joinmoim.js"></script>
+	<script type="text/javascript" src="/js/cat/cat.js"></script>
 	<script type="text/javascript" src="/js/category/category.js"></script>
 	<!-- 앨범 -->
 	<script type="text/javascript" src="/js/moim/album-form.js"></script>
@@ -106,5 +213,45 @@
 	<script type="text/javascript" src="/js/moim/somoim-list.js"></script>
 	<!-- 좋아요 -->
 	<script type="text/javascript" src="/js/moim/heart.js"></script>
+	<!--모달 수정 시 기존 값을 보여주는 로직-->
+	<script type="text/javascript">
+		const update = (value) => {
+			let num = value.getAttribute("num");
+			console.log("num: " + num);
+			$.ajax({
+			      url: "/somoim/get",
+			      type: "get",
+			      data: {"somoimno": num},
+			      dataType: "json",
+				  success: function (data) {
+						console.log(data.sd.title); 
+						//document.getElementById("inputGroupFile01").value = data.sd.fname;
+						document.getElementById("somoimno").value = data.sd.no;
+						document.getElementById("somoimMoimno").value = data.sd.moimno;
+						document.getElementById("somoimtitle").value = data.sd.title;
+						document.getElementById("somoimcontent").value = data.sd.content;
+						document.getElementById("somoimjdate").value = data.sd.jdate;
+						document.getElementById("somoimloc_trip").value = data.sd.loc_trip;
+						document.getElementById("somoimloc").value = data.sd.loc;
+						document.getElementById("somoimtotal").value = data.sd.total;
+						
+					}
+			});
+		}
+		const updateMoim = (value) => {
+			$.ajax({
+			      url: "/moim/get",
+			      type: "get",
+			      data: {"moimno": value},
+			      dataType: "json",
+				  success: function (data) {
+					  document.getElementById("moimno").value = data.m.no;
+						document.getElementById("moimtitle").value = data.m.title;
+						document.getElementById("moiminfo").value = data.m.info;
+						document.getElementById("moimcontent").value = data.m.content;
+				  }
+			});
+		} 
+	</script>
 </body>
 </html>
