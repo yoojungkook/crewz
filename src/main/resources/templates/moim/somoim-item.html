@@ -1,22 +1,22 @@
+
 <div class="text-start">
     <div class="row somoim_div">
-        <div class="col-3 somoim_img">
-            <img src="/img/9596881ac8a6f4b0ddd2fb32aaf896e0.jpg" class="img-fluid" style="border-radius: 5px">
+        <div class="col-3 somoim_img"> 
+            <img class="rounded float-start" style="border-radius: 5px">
         </div>
         <div class="col-9 position-relative">
-            <h4 class="fw-bold">제목</h4>
+            <h4 class="fw-bold" th:text="${item.getTitle()}">제목</h4>
             <p>본문</p>
             <p class="somoim-date">
-                    <span>일시 :
-                        <somoim-date-start>0000.00.00</somoim-date-start> ~
-                        <somoim-date-end>0000.00.00</somoim-date-end><!-- (<span>3 </span>박 <span>4</span>일) -->
+                    <span>정모일 :
+                        <jdate class="jdate"></jdate><!-- (<span>3 </span>박 <span>4</span>일) -->
                     </span>
                 <br>
-                <somoim-loc>여행지 :</somoim-loc>
+                <somoim-loc-trip class="loc_trip">여행지 :</somoim-loc-trip>
                 <br>
-                <somoim-assemble>집결 장소 및 시간 :</somoim-assemble>
+                <somoim-loc class="loc">집결 장소 : </somoim-loc>
                 <br>
-                <somoim-total>참석 : ?? / ??</somoim-total>
+                참석 : <cnt> </cnt> / <somoim-total class="total"> </somoim-total>
             </p>
 
             <div class="col-2 position-absolute bottom-0 end-0">
