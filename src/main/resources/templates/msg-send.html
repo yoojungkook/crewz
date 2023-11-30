@@ -1,0 +1,33 @@
+<!-- 메세지 쓰기 -->
+<div th:fragment="send" class="modal fade" id="msgSend" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">To: &nbsp;&nbsp;</h1>
+                <div class="dropdown">
+                    <button div="-1" no="-1" id="select" class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        선택
+                    </button>
+                    <ul class="dropdown-menu">
+                    </ul>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">제목:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">내용:</label>
+                        <textarea style="resize: none;" rows="5" cols="20" class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="send" type="button" class="btn btn-primary">메세지 보내기</button>
+            </div>
+        </div>
+    </div>
+</div>

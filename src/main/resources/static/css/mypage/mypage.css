@@ -5,18 +5,18 @@ a {
     color: inherit;
 }
 
-table {
-    border-collapse: separate;
-    border-spacing: 30px 30px;
-}
+/*table {*/
+/*    border-collapse: separate;*/
+/*    border-spacing: 30px 30px;*/
+/*}*/
 
-th {
-    text-align: center;
-}
+/*th {*/
+/*    text-align: center;*/
+/*}*/
 
-td, input {
-    text-align: left;
-}
+/*td, input {*/
+/*    text-align: left;*/
+/*}*/
 
 button {
     background-color: #fcf9f9;
@@ -91,7 +91,8 @@ ul#menu li button:hover i {
 }
 
 /*메세지 메뉴*/
-.menu-msg a {
+/*.menu-msg a, button {*/
+.menu-msg > button {
     display: inline-block;
     color: #fc4c4c;
     text-align: center;
@@ -100,6 +101,9 @@ ul#menu li button:hover i {
     font-size: 10px;
     border-radius: 5px;
     border-color: #fc4c4c;
+    background-color: #fc4c4c;
+    color: white;
+    font-size: 14px;
 }
 
 .menu-msg a:hover {
@@ -110,4 +114,9 @@ ul#menu li button:hover i {
 .menu-msg a.active {
     background-color: #fc4c4c;
     color: white;
+}
+
+/* 메세지 보내기 */
+h5 {
+    margin-bottom: 0;
 }

@@ -26,11 +26,6 @@ function connect() {
 
 // 메세지 송신
 function sendMessage() {
-    let Msg =  {
-        no : 1,
-        div : 2,
-        content : "메세지 전송!"
-    }
     stompClient.publish({
         destination: "/app/moim",
         body: JSON.stringify({'no' : 1, 'div' : 2, 'content' : "메시지 전송!"})

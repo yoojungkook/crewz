@@ -28,4 +28,23 @@ public interface MoimDao {
 	
 	@Delete("delete moim where no=#{no}")
 	public void delete(@Param("no") int no);
+
+	/* Jeongguk */
+	@Select("select * from moim where catno = #{no}")
+	ArrayList<Moim> getAllCategory(@Param("no") int no);
+
+	@Select("select * from moim where catno = #{no} and title like #{title}")
+	ArrayList<Moim> getAllCategoryAndTitle(@Param("no") int no, @Param("title") String title);
+
+	@Select("select * from moim where info like #{info}")
+	ArrayList<Moim> getAllInfo(@Param("info") String info);
+
+	@Select("select * from moim where title like #{title}")
+	ArrayList<Moim> getAllTitle(@Param("title") String title);
+
+	@Select("select * from moim where memberid = #{memberid}")
+	ArrayList<Moim> getAllMemberid(@Param("memberid") String memberid);
+
+	@Select("select memberid from moim where no = #{no}")
+	ArrayList<String> getMoimMember(int no);
 }
