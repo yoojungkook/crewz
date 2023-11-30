@@ -115,3 +115,7 @@ ul#menu li button:hover i {
 input:focus {
     outline: none;
 }
+
+#profile-upload-label{
+    font-weight: bold;
+}
