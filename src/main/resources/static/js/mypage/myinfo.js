@@ -56,14 +56,23 @@ function delMember() {
         confirmButtonColor: "#db3545",
         confirmButtonText: "네",
         showCancelButton: true,
-        cancelButtonText:"아니오"
+        cancelButtonText: "아니오"
     }).then((result) => {
         if (result.isConfirmed) {
-            sessionStorage.removeItem("loginId");
-            localStorage.clear();
-            location.href = "/member/delete?id=" + id;
+
+            Swal.fire({
+                title: "탈퇴가 완료되었습니다.",
+                text: "그동안 이용해 주셔서 감사합니다.",
+                confirmButtonText: "확인",
+                confirmButtonColor: "#db3545",
+                timer: 5000
+            }).then(() => {
+                sessionStorage.removeItem("loginId");
+                localStorage.clear();
+                location.href = "/member/delete?id=" + id;
+            });
         }
-    });
+    })
 }
 
 /**

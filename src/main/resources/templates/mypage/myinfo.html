@@ -93,7 +93,6 @@
                                    accept="image/jpg, image/jpeg, image/png">
                             <input id="profile-id" type="hidden" name="id" value="">
                         </div>
-                        <!--                        <input type="submit" value="변경">-->
                     </form>
                 </div>
 
@@ -115,7 +114,7 @@
                                            th:readonly="true"><br/>
                                     <input type="password" class="form-control" name="pwdNew1" id="pwdNew1" placeholder="새로운 비밀번호" onchange="changePwd()"><br/>
                                     <input type="password" class="form-control" name="pwdNew2" id="pwdNew2" onchange="changePwd()" placeholder="새로운 비밀번호 확인">
-                                    <label for="pwdNew1" id="pwdStatus" style="font-size: 10px;">영어, 숫자, 특수문자를 포함해주세요.</label>
+                                    <label for="pwdNew1" id="pwdStatus" style="font-size: 10px;">영어, 숫자, 특수문자(8~16자)를 포함해주세요.</label>
                                     <label for="pwdNew2" id="pwdStatusFail" style="font-size: 10px">비밀번호가 일치하지 않습니다.</label>
                                     <label for="pwdNew2" id="pwdStatusSuccess" style="font-size: 10px">비밀번호가 일치합니다.</label>
                                 </td>
@@ -128,8 +127,11 @@
                             </tr>
                             <tr>
                                 <th>전화번호</th>
-                                <td><input type="text" class="form-control" name="tel" id="tel" th:value="${m.tel}" oninput="changeTel()"></td>
-                                <label for="tel" id="telStatus" style="font-size: 10px">01012345678 형식으로 입력해 주세요.</label>
+                                <td>
+                                    <input type="text" class="form-control" name="tel" id="tel" th:value="${m.tel}" oninput="changeTel()">
+                                    <label for="tel" id="telStatus" style="margin-top:4px; font-size: 10px">01012345678 형식으로 입력해 주세요.</label>
+                                </td>
+
                                 <td>
                                     <button type="submit" id="submitBtn" class="btn btn-danger">변경</button>
                                 </td>

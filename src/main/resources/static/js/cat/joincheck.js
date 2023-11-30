@@ -60,7 +60,7 @@ function checkPwd() {
         $("#pwdStatus").text("영어, 숫자, 특수문자를 포함하여 8자~16자 이내로 입력해주세요.");
         pwdChecked = 1;
     } else if (pwd != pwd2) {
-        $("#pwdStatus").text("일치하지 않습니다.");
+        $("#pwdStatus").text("비밀번호가 일치하지 않습니다.");
         pwdChecked = 1;
     } else {
         $("#pwdStatus").text("");
@@ -150,10 +150,16 @@ function join() {
     });
 
     Swal.fire({
-        title: "크루즈에 오신 것을 환영합니다",
+        title: "크루즈에 오신 것을 환영합니다.",
         text: "회원가입이 완료되었습니다.",
         icon: "success",
-        timer: 2000
+        confirmButtonText: "확인",
+        confirmButtonColor: "#db3545",
+        timer: 5000
+    }).then((result) => {
+        if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+            console.log("시간 만료로 알림창이 사라집니다.");
+        }
     });
 
 }

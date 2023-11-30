@@ -124,3 +124,7 @@ h5 {
 input:focus {
     outline: none;
 }
+
+#profile-upload-label{
+    font-weight: bold;
+}
