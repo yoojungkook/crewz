@@ -95,8 +95,10 @@ function home() {
 
 /**
  * 로그아웃 시 세션 스토리지에서 loginId 제거 후 index.html 이동
+ * localStorage에 저장된 값도 삭제
  */
 function logout() {
     sessionStorage.removeItem("loginId");
+    localStorage.clear();
     location.href = "/";
 }
